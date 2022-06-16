@@ -1,0 +1,42 @@
+Pasar al .cpp:
+cCESSNA
+	void despegar() {
+		this->velocidad = velocidadDespegue;
+		this->alerones = false;
+		this->controlAutomatico = true;
+	}
+	
+	void estacionado() {
+		this->alerones = true;
+		this->controlAutomatico = false;
+		this->pasajerosActual = 0;
+		this->cargaActual = 0;
+	}
+
+cPista
+
+	bool operator==(cAvion* avion) {
+	if(avion->getLargoAvion() < this->getLargoDisponible() &&  
+		avion->getAnchoAvion() < this->getAnchoDisponible() &&
+		this->getPosicionFinalAvion(avion) > this->largoPistaActual)
+		return true;
+	return false;
+	}
+	
+	inline float getPosicionFinalAvion(cAvion* avion) {
+		return (this->getVelocidad(avion) * this->getTiempoIdeal(avion)) - (0.5 * /*cModelo::getAceleracion(avion)*/ * pow(this->getTiempoIdeal(avion), 2));
+	}
+	-Get Libre u ocupado y borrar el switch de pista
+	-GetLargo de la pista
+cAvion
+	bool operator>(cModelo* modelo) {
+		if(this->pasajerosActual > modelo->getLimitePasajeros())
+			return true;
+		return false;
+	}
+
+cTorreControl 
+	-Hacer dynamic cast 
+	
+	
+	
