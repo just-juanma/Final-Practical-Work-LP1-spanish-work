@@ -1,7 +1,7 @@
 #include "cCombustible.h"
 
-cCombustible::cCombustible() { 
-	this->duracionCombustible = new cFecha;
+cCombustible::cCombustible(short hora, short minuto) {
+	this->duracionCombustible = new cFecha(hora, minuto);
 }
 
 cCombustible::~cCombustible() {

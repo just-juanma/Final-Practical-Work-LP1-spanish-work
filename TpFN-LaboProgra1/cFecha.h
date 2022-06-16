@@ -6,22 +6,13 @@ class cFecha
 {
 public:
 	
-	/// <summary>
-	/// Constructor por defecto
-	/// </summary>
-	cFecha();
+
+	cFecha(short _hora = 0, short _minuto = 0);
 	
 	/// <summary>
 	/// Destructor por defecto
 	/// </summary>
 	~cFecha();
-	
-	/// <summary>
-	/// En base al combustible, se setea la hora ideal en la que deberia llegar el avion
-	/// </summary>
-	/// <param name="hora">: Hora ideal</param>
-	/// <param name="minuto">: Minuto ideal</param>
-	void setHorarioEsperado(short hora, short minuto);
 	
 	time_t getHorarioEsperado() const;
 	

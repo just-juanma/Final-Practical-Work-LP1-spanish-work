@@ -3,7 +3,6 @@
 #include "gbl.h"
 #include "eEstado.h"
 #include "cModelo.h"
-#include "cCombustible.h"
 
 class cAvion
 {
@@ -52,13 +51,7 @@ public:
 	/// Obtiene el estado del avion
 	/// </summary>
 	/// <returns>Estado actual del avion</returns>
-	eEstado getEstado()const;
-	
-	/// <summary>
-	/// Setea el combustible del avion
-	/// </summary>
-	/// <param name="_combustible">: Combustible del avion</param>
-	void setCombustible(cCombustible* _combustible);
+	eEstado getEstado() const;
 	
 	/// <summary>
 	/// Setea el destino del avion
@@ -145,7 +138,6 @@ protected:
 	string destino;
 	time_t horaSalida; 
 	cModelo* modelo;
-	cCombustible* combustible;
 };
 
 inline short cAvion::getPasajerosActual() const { return this->pasajerosActual; }
@@ -154,9 +146,7 @@ inline short cAvion::getLargoAvion() const { return this->largoAvion; }
 
 inline short cAvion::getAnchoAvion() const { return this->anchoAvion; }
 
-inline eEstado cAvion::getEstado()const { return this->estado; }
-
-inline void cAvion::setCombustible(cCombustible* _combustible) { this->combustible = _combustible; }
+inline eEstado cAvion::getEstado() const { return this->estado; }
 
 inline void cAvion::setDestino(string _destino) { this->destino = _destino; }
 

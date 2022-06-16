@@ -9,10 +9,15 @@ cAvion::cAvion(string _ID, short _largoAvion, short _anchoAvion, short _helice, 
 	this->pasajerosActual = _pasajerosActual;
 	this->velocidad = _velocidad;
 	this->horaSalida = _horaSalida;
-	this->modelo = NULL;
+	if (this->ID == "01")      this->modelo = new cModelo("CESSNA C-210N CENTURION", 200.6, 1, 10, 2, 10);
+	else if (this->ID == "02") this->modelo = new cModelo("CESSNA C10T CC-PON", 182.1, 1.3, 9, 3, 21);
+	else if (this->ID == "03") this->modelo = new cModelo("Cessna P210N Particular", 170.3, 1.2, 11, 0, 50);
+	// seguir con 7 ID mas, tienen que haber modelos para 10 aviones
 }
 
-cAvion::~cAvion() {	}
+cAvion::~cAvion() {	
+	delete this->modelo;
+}
 
 void cAvion::switchEstado(eEstado _estado) {
 	if (_estado == eEstado::enVuelo) {

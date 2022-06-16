@@ -1,13 +1,8 @@
 #include "cFecha.h"
 
-cFecha::cFecha() { 
-	this->horarioEsperado.tm_hour = 0;
-	this->horarioEsperado.tm_min = 0;
+cFecha::cFecha(short _hora, short _minuto) {
+	this->horarioEsperado.tm_hour = _hora;
+	this->horarioEsperado.tm_min = _minuto;
 }
 
 cFecha::~cFecha() { }
-
-void cFecha::setHorarioEsperado(short hora, short minuto) {
-	this->horarioEsperado.tm_hour = hora;
-	this->horarioEsperado.tm_min = minuto;
-}
