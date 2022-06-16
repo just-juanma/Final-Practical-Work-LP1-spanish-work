@@ -1,6 +1,4 @@
 #include "cFecha.h"
- 
-time_t cFecha::local = time(&local);
 
 cFecha::cFecha() { 
 	this->horarioEsperado.tm_hour = 0;

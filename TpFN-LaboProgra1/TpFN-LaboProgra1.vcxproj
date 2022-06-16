@@ -133,7 +133,6 @@
     <ClCompile Include="cCombustible.cpp" />
     <ClCompile Include="cFecha.cpp" />
     <ClCompile Include="cHangar.cpp" />
-    <ClCompile Include="cListaAviones.cpp" />
     <ClCompile Include="cModelo.cpp" />
     <ClCompile Include="cPista.cpp" />
     <ClCompile Include="cTorreControl.cpp" />
@@ -149,7 +148,6 @@
     <ClInclude Include="cHangar.h" />
     <ClInclude Include="cLista.h" />
     <ClInclude Include="cListaAvion.h" />
-    <ClInclude Include="cListaAviones.h" />
     <ClInclude Include="cModelo.h" />
     <ClInclude Include="cPista.h" />
     <ClInclude Include="cTorreControl.h" />

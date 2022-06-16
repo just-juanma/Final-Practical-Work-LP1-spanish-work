@@ -2,40 +2,40 @@
 
 cTorreControl::cTorreControl(ushort _tamHangar, ushort _tamlista) {
 	this->hangar = new cHangar(_tamHangar); 
-	this->lista = new cListaAvion(_tamlista);
+	this->lista = new cListaAvion(_tamlista); 
 	this->pista = NULL;
 }
 
-cTorreControl::~cTorreControl() {}; 
+cTorreControl::~cTorreControl() { }; 
 
-bool cTorreControl::asignarPista(cPista* _pista) {
-	this->pista = _pista; 
-}
+//bool cTorreControl::asignarPista(cPista* _pista) { 
+//	this->pista = _pista; 
+//}
 
-bool cTorreControl::autorizarDespegue(cAvion* avion) {
-	
-	for (int i = 0; i < this->lista->getCantTotal(); i++) {
-		if (*pista==avion) {
-			*this->lista - avion;
-			avion->despegar();
-		}
-		else {
-			throw new exception("El avion no puede despegar hay un avion en la pista");
-		}
-	}
-}
+//bool cTorreControl::autorizarDespegue(cAvion* avion) {
+//	
+//	for (int i = 0; i < this->lista->getCantTotal(); i++) {
+//		if (*pista == avion) {
+//			*this->lista - avion;
+//			avion->despegar();
+//		}
+//		else {
+//			throw exception("El avion no puede despegar hay un avion en la pista");
+//		}
+//	}
+//}
 
-void cTorreControl::imprimirDetalles()
-{
-	stringstream slt;
-	for (ushort i = 0; i < this->lista->cantActual; i++) {
-		slt << this->lista[0][i]->imprimir();
-	}
-	for (ushort i = 0; i < this->hangar->getCantActual(); i++) {
-		slt << this->lista[0][i]->imprimir();
-	}
-	cout << slt.str() << endl;
-}
+//void cTorreControl::imprimirDetalles()
+//{
+//	stringstream slt;
+//	for (ushort i = 0; i < this->lista->cantActual; i++) {
+//		slt << this->lista[0][i]->imprimir(); 
+//	}
+//	for (ushort i = 0; i < this->hangar->getCantActual(); i++) {
+//		slt << this->lista[0][i]->imprimir(); 
+//	}
+//	cout << slt.str() << endl;
+//}
 
 //bool cTorreControl::operator!=(cAvion* avion)
 //{
@@ -52,12 +52,12 @@ void cTorreControl::imprimirDetalles()
 //	return true;
 //}
 
-bool cTorreControl::asignarPista(cAvion* avion)
-{
-	if (*this->pista == avion) {
-		this->autorizarAterrizaje(avion);
-	};
-}
+//bool cTorreControl::asignarPista(cAvion* avion) 
+//{
+//	if (*this->pista == avion) {
+//		this->autorizarAterrizaje(avion);
+//	};
+//}
 
 
 //bool cTorreControl::autorizarAterrizaje(cAvion* avion) {

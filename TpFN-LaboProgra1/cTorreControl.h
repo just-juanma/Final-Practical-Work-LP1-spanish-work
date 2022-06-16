@@ -19,12 +19,6 @@ public:
 	/// Destructor por defecto
 	/// </summary>	
 	~cTorreControl();
-	/// <summary>
-	/// Asigna la pista deseada a tener en la torre de control
-	/// </summary>
-	/// <param name="_pista"></param>
-	/// <returns></returns>
-	bool asignarPista(cPista* _pista);
 
 	void setLista(cListaAvion* lista);
 	
@@ -69,7 +63,5 @@ private:
 };
 
 inline void cTorreControl::setLista(cListaAvion* _lista) { this->lista = _lista; }
-
-
 
 #endif // !CTORRECONTROL_H

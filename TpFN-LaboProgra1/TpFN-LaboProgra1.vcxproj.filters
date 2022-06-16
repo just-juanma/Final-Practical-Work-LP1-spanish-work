@@ -33,9 +33,6 @@
     <ClCompile Include="cHangar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cListaAviones.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cModelo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -75,9 +72,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cListaAvion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cListaAviones.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cModelo.h">

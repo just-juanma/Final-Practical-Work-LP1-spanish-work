@@ -18,14 +18,14 @@ cAvion* cHangar::Despachar(short _pos)
 	return this->almacenados[0][_pos];
 }
 
-int cHangar::buscarAvion(string ID)
-{
-	for (int i = 0; i < almacenados->getCantTotal(); i++) {
-		if (this->almacenados[0][i].getID() == ID) {
-			return i;
-		}
-	}
-}
+//int cHangar::buscarAvion(string ID)
+//{
+//	for (int i = 0; i < almacenados->getCantTotal(); i++) {
+//		if (this->almacenados[0][i].getID() == ID) { //eror aca
+//			return i;
+//		}
+//	}
+//}
 
 int cHangar::getCantActual() {
 	return this->almacenados->getCantTotal();
