@@ -9,10 +9,19 @@ cAvion::cAvion(string _ID, short _largoAvion, short _anchoAvion, short _helice, 
 	this->pasajerosActual = _pasajerosActual;
 	this->velocidad = _velocidad;
 	this->horaSalida = _horaSalida;
-	if (this->ID == "01")      this->modelo = new cModelo("CESSNA C-210N CENTURION", 200.6, 1, 10, 2, 10);
-	else if (this->ID == "02") this->modelo = new cModelo("CESSNA C10T CC-PON", 182.1, 1.3, 9, 3, 21);
-	else if (this->ID == "03") this->modelo = new cModelo("Cessna P210N Particular", 170.3, 1.2, 11, 0, 50);
-	// seguir con 7 ID mas, tienen que haber modelos para 10 aviones
+	try {
+		if (this->ID == "01")      this->modelo = new cModelo("CESSNA C-210N CENTURION", 200.6, 1, 10, 2, 10);
+		else if (this->ID == "02") this->modelo = new cModelo("CESSNA C10T CC-PON", 182.1, 1.3, 9, 3, 21);
+		else if (this->ID == "03") this->modelo = new cModelo("Cessna P210N Particular", 170.3, 1.2, 11, 0, 50);
+		// Bato: seguir con 7 ID mas, tienen que haber modelos para 10 aviones (5 CESSNA y 5 Biplanos)
+		else throw null_modelo();
+	}
+	catch (bad_alloc& e) {
+		cout << e.what();
+	}
+	catch (null_modelo& e) {
+		cout << e.what();
+	}
 }
 
 cAvion::~cAvion() {	
@@ -32,9 +41,15 @@ void cAvion::switchEstado(eEstado _estado) {
 }
 
 bool cAvion::operator<(cCombustible* _combustible) {
-	if(this->horaSalida + _combustible->getDuracion()->getHorarioEsperado() >= cFecha::getHorarioActual())
-		return true;
-	return false;
+	try {
+		if(this->horaSalida + _combustible->getDuracion()->getHorarioEsperado() >= cFecha::getHorarioActual())
+			return true;
+		return false;
+
+	}
+	catch (bad_getter& e) {
+		cout << e.what();
+	}
 }
 
 istream& operator>>(istream& is, cAvion& avion) {	

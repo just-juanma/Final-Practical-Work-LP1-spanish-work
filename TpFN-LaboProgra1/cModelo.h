@@ -14,6 +14,8 @@ public:
 	/// <param name="_limiteCarga">: Limite de carga del modelo</param>
 	/// <param name="_aceleracion">: Aceleracion del modelo</param>
 	/// <param name="_limitePasajeros">: Limite de pasajeros del modelo</param>
+	/// <param name="hora">: hora de duracion del combustible</param>
+	/// <param name="minuto">: minuto de duracion del combustible</param>
 	cModelo(string _nombre = "", float _limiteCarga = 0, float _aceleracion = 0, short _limitePasajeros = 0,
 			short hora = 0, short minuto = 0);
 

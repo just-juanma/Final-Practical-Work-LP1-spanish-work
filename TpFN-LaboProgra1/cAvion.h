@@ -3,6 +3,8 @@
 #include "gbl.h"
 #include "eEstado.h"
 #include "cModelo.h"
+#include "cException.h"
+
 
 class cAvion
 {
@@ -140,17 +142,41 @@ protected:
 	cModelo* modelo;
 };
 
-inline short cAvion::getPasajerosActual() const { return this->pasajerosActual; }
+inline short cAvion::getPasajerosActual() const { 
+	if (!this->pasajerosActual)
+		throw bad_getter();
+	return this->pasajerosActual; 
+}
 
-inline short cAvion::getLargoAvion() const { return this->largoAvion; }
+inline short cAvion::getLargoAvion() const {
+	if (!this->largoAvion)
+		throw bad_getter();
+	return this->largoAvion; 
+}
 
-inline short cAvion::getAnchoAvion() const { return this->anchoAvion; }
+inline short cAvion::getAnchoAvion() const { 
+	if (!this->anchoAvion)
+		throw bad_getter();
+	return this->anchoAvion; 
+}
 
-inline eEstado cAvion::getEstado() const { return this->estado; }
+inline eEstado cAvion::getEstado() const { 
+	if (this->estado == eEstado::desconocido)
+		throw bad_getter();
+	return this->estado; 
+}
 
-inline void cAvion::setDestino(string _destino) { this->destino = _destino; }
+inline void cAvion::setDestino(string _destino) { 
+	if (_destino == " " || this->destino != " ")
+		throw bad_setter();
+	this->destino = _destino; 
+}
 
-inline void cAvion::setPasajerosActuales(short _pasajerosActuales) { this->pasajerosActual = _pasajerosActuales; }
+inline void cAvion::setPasajerosActuales(short _pasajerosActuales) { 
+	if (!_pasajerosActuales || this->pasajerosActual)
+		throw bad_setter();
+	this->pasajerosActual = _pasajerosActuales; 
+}
 
 inline void cAvion::setVelocidad(short _velocidad) { this->velocidad = _velocidad; }
 
