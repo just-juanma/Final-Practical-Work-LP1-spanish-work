@@ -7,4 +7,4 @@ Dado que los aviones CESSNA tienen velocidad de 200km/h para el despegue, tendra
 
 * Se proponen las condiciones del avion para el despegue, pero no para el aterrizaje. Para los CESSNA se propone que suba los alerones y apague el control automatico de estabilizacion de vuelo al terminar de estacionar. Para los biplanos su angulo de inclinacion vuelve a 0 antes de estacionar (sobre el aterrizaje mismo).
 
-* Se evitaron los comentarios de cualquier get/set, y metodos polimorficos.
+* Se evitaron los comentarios de cualquier get/set, y algunos metodos polimorficos (en las clases derivadas).
