@@ -19,13 +19,13 @@ public:
 
 private:
 	
-	cFecha* duracionCombustible;
+	cFecha* duracion;
 	
 };
 
 //inline void cCombustible::cargarCombustible(short hora, short minuto) { this->duracionCombustible->setHorarioEsperado(hora, minuto); }
 
-inline cFecha* cCombustible::getDuracion() const { return this->duracionCombustible; }
+inline cFecha* cCombustible::getDuracion() const { return this->duracion; }
 
 #endif // !CCOMBUSTIBLE_H
 

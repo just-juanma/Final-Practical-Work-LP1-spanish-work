@@ -131,7 +131,7 @@ inline void cAvion::setDestino(string _destino) {
 
 inline void cAvion::setPasajerosActuales(short _pasajerosActuales) { 
 	if (_pasajerosActuales <= 0)
-		throw invalid_argument("Error: La cantidad de pasajeros que se intenta setear es invalido\n");
+		throw invalid_argument("Error: La cantidad de pasajeros que se intenta setear es invalida\n");
 	this->pasajerosActual = _pasajerosActuales; 
 }
 

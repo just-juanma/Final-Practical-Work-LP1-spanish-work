@@ -1,5 +1,6 @@
 #include "cAvion.h"
 
+/// <seealso cref="https://en.cppreference.com/w/cpp/error/exception"/>
 cAvion::cAvion(string _ID, short _largoAvion, short _anchoAvion, short _helice, string _destino,
 	short _pasajerosActual, eEstado _estado, short _velocidad, time_t _horaSalida) :
 	ID(_ID), 
@@ -10,7 +11,7 @@ cAvion::cAvion(string _ID, short _largoAvion, short _anchoAvion, short _helice, 
 	this->destino = _destino;
 	try {
 		if(_helice <= 0 || pasajerosActual <= 0 || velocidad < 0 || horaSalida <= 0)
-			throw invalid_argument("Error: Argumentos invalidos en el constructor de cAvion\n");
+			throw invalid_argument("Error: Argumentos invalidos en el constructor del Avion\n");
 		this->velocidad = _velocidad;
 		this->helice = _helice;
 		this->pasajerosActual = _pasajerosActual;
@@ -25,16 +26,14 @@ cAvion::cAvion(string _ID, short _largoAvion, short _anchoAvion, short _helice, 
 		cout << e.what();
 	}
 	catch (bad_alloc& e) {
-		cout << e.what();
+		cout << e.what() << endl;
 	}
 	catch (null_modelo& e) {
 		cout << e.what();
 	}
 }
 
-cAvion::~cAvion() {	
-	delete this->modelo;
-}
+cAvion::~cAvion() {	delete this->modelo; }
 
 void cAvion::switchEstado(eEstado _estado) {
 	if (_estado == eEstado::enVuelo) {
@@ -44,7 +43,7 @@ void cAvion::switchEstado(eEstado _estado) {
 		_estado = eEstado::enVuelo;
 	}
 	else if (_estado == eEstado::aterrizando) {
-		//this->estado = eEstado::desconocido; chequear que se hace aca -----------------------------------------
+		// this->estado = eEstado::desconocido; checkear que se hace aca 
 	}
 }
 

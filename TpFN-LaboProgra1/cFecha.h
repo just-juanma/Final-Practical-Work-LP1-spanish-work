@@ -6,7 +6,11 @@ class cFecha
 {
 public:
 	
-
+	/// <summary>
+	/// Constructor parametrizado por defecto
+	/// </summary>
+	/// <param name="_hora">: Hora a setear</param>
+	/// <param name="_minuto">: Minuto a setear</param>
 	cFecha(short _hora = 0, short _minuto = 0);
 	
 	/// <summary>
@@ -24,10 +28,6 @@ private:
 	
 };
 
-/// <summary>
-/// Obtiene el horario esperado en formato time_t
-/// </summary>
-/// <returns>Horario esperado en formato time_t</returns>
 /// <seealso cref="https://en.cppreference.com/w/cpp/language/const_cast"/>
 inline time_t cFecha::getHorarioEsperado() const { return mktime(const_cast<tm*>(&horarioEsperado)); }
 
