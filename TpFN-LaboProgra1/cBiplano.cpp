@@ -5,7 +5,9 @@ ushort cBiplano::velMaxAteBip = 220;
 
 cBiplano::cBiplano(string _ID, short _largoAvion, short _anchoAvion, string _destino,
 	short _pasajerosActuales, eEstado _estado, short _velocidad, time_t _horaSalida,
-	float _inclinacion) : cAvion(_ID, _largoAvion, _anchoAvion, 2, _destino, _pasajerosActuales, _estado, _velocidad, _horaSalida) {
+	float _inclinacion) : 
+	cAvion(_ID, _largoAvion, _anchoAvion, 2, _destino, _pasajerosActuales, _estado, _velocidad, _horaSalida) 
+{
 	this->inclinacion = _inclinacion;
 }
 
@@ -18,11 +20,11 @@ bool cBiplano::operator>(cModelo* _modelo) {
 }
 
 void cBiplano::despegar() {
-	//Implementrar logica para el despegue--------------------------------
+	//Implementrar logica para el despegue
 }
 
 void cBiplano::estacionar() {
-	//Implementar logica para el estacionamiento;--------------------------------------------
+	//Implementar logica para el estacionamiento
 }
 
 string cBiplano::to_string() const {

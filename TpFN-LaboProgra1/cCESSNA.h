@@ -22,7 +22,7 @@ public:
 	/// <param name="_controlAutomatico">: Control automatico prendido (true) o apagado (false)</param>
 	/// <param name="_cargaActual">: Cantidad de carga</param>
 	/// <param name="_alerones">: Alerones subidos (true) o bajos (false)</param>
-	cCESSNA(string _ID = "", short _largoAvion = 0, short _anchoAvion = 0, string _destino = "",
+	cCESSNA(string _ID = "", float _largoAvion = 0, float _anchoAvion = 0, string _destino = "",
 		short _pasajerosActuales = 0, eEstado _estado = eEstado::desconocido, short _velocidad = 0, time_t _horaSalida = 0,
 		bool _controlAutomatico = false, short _cargaActual = 0, bool _alerones = false);
 	
@@ -59,14 +59,14 @@ public:
 	/// Permite generar la salida de los datos del avion
 	/// </summary>
 	/// <returns>Flujo de salida</returns>
-	friend ostream& operator<<(ostream& os, const cAvion& avion);
+	friend ostream& operator<<(ostream& os, const cCESSNA& CESSNA);
 
 	/// <summary>
 	/// Permite generar la entrada de los datos del avion
 	/// </summary>
 	/// <returns>Flujo de entrada</returns>
-	friend istream& operator>>(istream& is, cAvion& avion);
-
+	friend istream& operator>>(istream& is, cCESSNA& CESSNA);
+	
 	string to_string() const;
 
 protected:

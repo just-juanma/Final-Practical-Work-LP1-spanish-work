@@ -3,10 +3,10 @@
 ushort cCESSNA::velMaxDesCes = 200;
 ushort cCESSNA::velMaxAteCes = 180;
 
-cCESSNA::cCESSNA(string _ID, short _largoAvion, short _anchoAvion, string _destino,
+cCESSNA::cCESSNA(string _ID, float _largoAvion, float _anchoAvion, string _destino,
 	short _pasajerosActuales, eEstado _estado, short _velocidad, time_t _horaSalida,
-	bool _controlAutomatico, short _cargaActual, bool _alerones) 
-	: cAvion(_ID, _largoAvion, _anchoAvion, 1, _destino, _pasajerosActuales, _estado, _velocidad, _horaSalida)
+	bool _controlAutomatico, short _cargaActual, bool _alerones) : 
+	cAvion(_ID, _largoAvion, _anchoAvion, 1, _destino, _pasajerosActuales, _estado, _velocidad, _horaSalida)
 {
 	this->controlAutomatico = _controlAutomatico;
 	this->cargaActual = _cargaActual;
@@ -46,6 +46,5 @@ void cCESSNA::despegar() {
 }
 
 void cCESSNA::estacionar() {
-	// Implementar logica para el estacionamiento;
+	// Implementar logica para el estacionamiento
 }
-

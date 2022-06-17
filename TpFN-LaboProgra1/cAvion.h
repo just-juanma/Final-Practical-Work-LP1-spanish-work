@@ -23,9 +23,9 @@ public:
 	/// <param name="_estado">: Estado del vuelo</param>
 	/// <param name="_velocidad">: Velocidad actual del avion</param>
 	/// <param name="_horaSalida">: Hora de salida del avion</param>
-	cAvion(string _ID = "", short _largoAvion = 0, short _anchoAvion = 0, short _helice = 0, string _destino = "",
+	cAvion(string _ID = "", float _largoAvion = 0, float _anchoAvion = 0, short _helice = 0, string _destino = "",
 		   short _pasajerosActuales = 0, eEstado _estado = eEstado::desconocido, short _velocidad = 0, time_t _horaSalida = 0);
-	
+
 	/// <summary>
 	/// Destructor por defecto
 	/// </summary>	
@@ -103,8 +103,8 @@ public:
 	
 protected:
 	
-	const short largoAvion;
-	const short anchoAvion;
+	const float largoAvion;
+	const float anchoAvion;
 	const string ID;
 	short helice;
 	short pasajerosActual;

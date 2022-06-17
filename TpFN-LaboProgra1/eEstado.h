@@ -7,7 +7,8 @@ enum eEstado {
 	desconocido,
 	despegando, 
 	enVuelo,
-	aterrizando
+	aterrizando,
+	estacionado
 };
 
 #endif // !EESTADO_H

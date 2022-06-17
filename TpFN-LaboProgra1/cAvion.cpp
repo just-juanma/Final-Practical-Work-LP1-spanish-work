@@ -1,7 +1,7 @@
 #include "cAvion.h"
 
 /// <seealso cref="https://en.cppreference.com/w/cpp/error/exception"/>
-cAvion::cAvion(string _ID, short _largoAvion, short _anchoAvion, short _helice, string _destino,
+cAvion::cAvion(string _ID, float _largoAvion, float _anchoAvion, short _helice, string _destino,
 	short _pasajerosActual, eEstado _estado, short _velocidad, time_t _horaSalida) :
 	ID(_ID), 
 	largoAvion(_largoAvion), 
@@ -36,15 +36,27 @@ cAvion::cAvion(string _ID, short _largoAvion, short _anchoAvion, short _helice, 
 cAvion::~cAvion() {	delete this->modelo; }
 
 void cAvion::switchEstado(eEstado _estado) {
-	if (_estado == eEstado::enVuelo) {
-		_estado = eEstado::aterrizando;
+	try {
+		if (_estado == eEstado::despegando) {
+			this->estado = eEstado::enVuelo;
+		}
+		else if (_estado == eEstado::enVuelo) {
+			this->estado = eEstado::aterrizando;
+		}
+		else if (_estado == eEstado::aterrizando) {
+			this->estado = eEstado::estacionado;
+		}
+		else if (_estado == eEstado::estacionado)
+		{
+			this->estado = eEstado::despegando;
+		}
+		else
+			throw null_status();
 	}
-	else if (_estado == eEstado::despegando) {
-		_estado = eEstado::enVuelo;
+	catch (null_status& e) {
+		cout << e.what();
 	}
-	else if (_estado == eEstado::aterrizando) {
-		// this->estado = eEstado::desconocido; checkear que se hace aca 
-	}
+	
 }
 
 bool cAvion::operator<(cCombustible* _combustible) {

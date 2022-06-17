@@ -1,6 +1,6 @@
 #include "cTorreControl.h"
-#include "cModelo.h"
-
+#include "cBiplano.h"
+#include "cCESSNA.h"
 
 int main() {
 
@@ -10,7 +10,9 @@ int main() {
 			- Bautista Farfaglia
 			- Juan Manuel Gonzalez Kapnik 
 	*/
-
+	
+	// Simulacion de un avion en vuelo
+	
 	return 0;
 }
 

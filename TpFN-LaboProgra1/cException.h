@@ -11,9 +11,16 @@ public:
 };
 
 class null_pista :public exception {
-	public:
+public:
 	const char* what() const throw() {
 		return "Error: No se pudo cargar la pista\n";
+	}
+};
+
+class null_status : public exception {
+public:
+	const char* what() const throw() {
+		return "Error: Estado desconocido de un avion no tiene donde switchear\n";
 	}
 };
 
@@ -61,21 +68,21 @@ public:
 };
 
 class error_tiempoMaximo :public exception {
-	public:
+public:
 	const char* what() const throw() {
 		return "Error: El tiempo máximo de vuelo, no alcanza\n";
 	}
 };
 
 class error_largo_pista :public exception {
-	public:
+public:
 	const char* what() const throw() {
 		return "Error: El largo de la pista no es suficiente\n";
 	}
 };
 
 class error_ancho_pista :public exception {
-	public:
+public:
 	const char* what() const throw() {
 		return "Error: El ancho de la pista no es suficiente\n";
 	}
