@@ -19,6 +19,9 @@ public:
 	cModelo(string _nombre = "", float _limiteCarga = 0, float _aceleracion = 0, short _limitePasajeros = 0,
 			short hora = 0, short minuto = 0);
 
+	/// <summary>
+	/// Destructor parametrizado por defecto
+	/// </summary>
 	~cModelo();
 	
 	cCombustible* getCombustible() const;

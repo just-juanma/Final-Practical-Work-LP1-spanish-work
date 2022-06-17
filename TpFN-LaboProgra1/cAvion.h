@@ -31,52 +31,20 @@ public:
 	/// </summary>	
 	~cAvion();
 	
-	/// <summary>
-	/// Obtiene la cantidad de pasajeros que debera ser informada a la torre de control
-	/// </summary>
-	/// <returns></returns>
 	short getPasajerosActual() const;
 	
-	/// <summary>
-	/// Obtiene el largo del avion
-	/// </summary>
-	/// <returns>Largo del avion</returns>
 	short getLargoAvion() const;
-	
-	/// <summary>
-	/// Obtiene el ancho del avion
-	/// </summary>
-	/// <returns>Ancho del avion</returns>
+
 	short getAnchoAvion() const;
 	
-	/// <summary>
-	/// Obtiene el estado del avion
-	/// </summary>
-	/// <returns>Estado actual del avion</returns>
 	eEstado getEstado() const;
-	
-	/// <summary>
-	/// Setea el destino del avion
-	/// </summary>
-	/// <param name="_destino">: Destino del avion</param>
+
 	void setDestino(string _destino);
-	
-	/// <summary>
-	/// Setea la cantidad actual de pasajeros
-	/// </summary>
-	/// <param name="_pasajerosActuales">: Cantidad actual de pasajeros</param>
+
 	void setPasajerosActuales(short _pasajerosActuales);
 	
-	/// <summary>
-	/// Setea velocidad actual del avion
-	/// </summary>
-	/// <param name="_velocidad">: Velocidad actual del avion</param>
 	void setVelocidad(short _velocidad);
 	
-	/// <summary>
-	/// Setea el modelo
-	/// </summary>
-	/// <param name="_modelo">: Modelo actual</param>
 	void setModelo(cModelo* _modelo);
 	
 	/// <summary>
@@ -114,6 +82,11 @@ public:
 	/// <returns>True en caso que se exceda, false en caso contrario</returns>
 	virtual bool operator>(cModelo* modelo) = 0;
 
+	/// <summary>
+	/// Verifica que el avion este en horario
+	/// </summary>
+	/// <param name="_combustible">: Combustible del avion</param>
+	/// <returns></returns>
 	bool operator<(cCombustible* _combustible);
 	
 	/// <summary>
@@ -142,45 +115,31 @@ protected:
 	cModelo* modelo;
 };
 
-inline short cAvion::getPasajerosActual() const { 
-	if (!this->pasajerosActual)
-		throw bad_getter();
-	return this->pasajerosActual; 
-}
+inline short cAvion::getPasajerosActual() const { return this->pasajerosActual; }
 
-inline short cAvion::getLargoAvion() const {
-	if (!this->largoAvion)
-		throw bad_getter();
-	return this->largoAvion; 
-}
+inline short cAvion::getLargoAvion() const { return this->largoAvion; }
 
-inline short cAvion::getAnchoAvion() const { 
-	if (!this->anchoAvion)
-		throw bad_getter();
-	return this->anchoAvion; 
-}
+inline short cAvion::getAnchoAvion() const { return this->anchoAvion; }
 
-inline eEstado cAvion::getEstado() const { 
-	if (this->estado == eEstado::desconocido)
-		throw bad_getter();
-	return this->estado; 
-}
+inline eEstado cAvion::getEstado() const { return this->estado; }
 
 inline void cAvion::setDestino(string _destino) { 
-	if (_destino == " " || this->destino != " ")
-		throw bad_setter();
+	if (_destino == "")
+		throw invalid_argument("Error: El destino que se intenta setear es invalido\n");
 	this->destino = _destino; 
 }
 
 inline void cAvion::setPasajerosActuales(short _pasajerosActuales) { 
-	if (!_pasajerosActuales || this->pasajerosActual)
-		throw bad_setter();
+	if (_pasajerosActuales <= 0)
+		throw invalid_argument("Error: La cantidad de pasajeros que se intenta setear es invalido\n");
 	this->pasajerosActual = _pasajerosActuales; 
 }
 
-inline void cAvion::setVelocidad(short _velocidad) { this->velocidad = _velocidad; }
-
-inline void cAvion::setModelo(cModelo* _modelo) { this->modelo = _modelo; }
+inline void cAvion::setVelocidad(short _velocidad) {
+	if (_velocidad < 0)
+		throw invalid_argument("Error: La velocidad del avion que se intenta setear es invalida\n");
+	this->velocidad = _velocidad; 
+}
 
 inline ostream& operator<<(ostream& os, const cAvion& avion) { return os << avion.to_string() << endl; }
 

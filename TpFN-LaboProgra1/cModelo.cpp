@@ -1,7 +1,9 @@
 #include "cModelo.h"
 
 cModelo::cModelo(string _nombre, float _limiteCarga, float _aceleracion, short _limitePasajeros,
-				 short hora, short minuto) : nombre(_nombre) {
+				 short hora, short minuto) :
+	nombre(_nombre) 
+	{
 	this->limiteCarga = _limiteCarga;
 	this->aceleracion = _aceleracion;
 	this->limitePasajeros = _limitePasajeros;
