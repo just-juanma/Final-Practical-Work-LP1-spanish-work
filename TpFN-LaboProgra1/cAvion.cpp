@@ -9,21 +9,16 @@ cAvion::cAvion(string _ID, float _largoAvion, float _anchoAvion, short _helice, 
 	{
 	this->estado = _estado;
 	this->destino = _destino;
+	this->velocidad = _velocidad;
+	this->helice = _helice;
+	this->pasajerosActual = _pasajerosActual;
+	this->horaSalida = _horaSalida;
 	try {
-		if(_helice <= 0 || pasajerosActual <= 0 || velocidad < 0 || horaSalida <= 0)
-			throw invalid_argument("Error: Argumentos invalidos en el constructor del Avion\n");
-		this->velocidad = _velocidad;
-		this->helice = _helice;
-		this->pasajerosActual = _pasajerosActual;
-		this->horaSalida = _horaSalida;
 		if (this->ID == "01")      this->modelo = new cModelo("CESSNA C-210N CENTURION", 200.6, 1, 10, 2, 10);
 		else if (this->ID == "02") this->modelo = new cModelo("CESSNA C10T CC-PON", 182.1, 1.3, 9, 3, 21);
 		else if (this->ID == "03") this->modelo = new cModelo("Cessna P210N Particular", 170.3, 1.2, 11, 0, 50);
 		// Bato: seguir con 7 ID mas, tienen que haber modelos para 10 aviones (5 CESSNA y 5 Biplanos)
 		else throw null_modelo();
-	}
-	catch (invalid_argument &e) {
-		cout << e.what();
 	}
 	catch (bad_alloc& e) {
 		cout << e.what() << endl;
@@ -34,6 +29,17 @@ cAvion::cAvion(string _ID, float _largoAvion, float _anchoAvion, short _helice, 
 }
 
 cAvion::~cAvion() {	delete this->modelo; }
+
+string cAvion::enumToString(eEstado _estado) const {
+	switch (_estado)
+	{
+	case eEstado::desconocido: return "desconocido";
+	case eEstado::despegando:  return "despegando";
+	case eEstado::enVuelo:     return "en vuelo";
+	case eEstado::aterrizando: return "aterrizando";
+	case eEstado::estacionado: return "estacionado";
+	}
+}
 
 void cAvion::switchEstado(eEstado _estado) {
 	try {

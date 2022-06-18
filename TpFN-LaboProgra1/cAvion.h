@@ -38,14 +38,18 @@ public:
 	short getAnchoAvion() const;
 	
 	eEstado getEstado() const;
+	
+	string getID() const;
+	
+	cModelo* getModelo() const;
+	
+	cCombustible* getCombustible() const;
 
 	void setDestino(string _destino);
 
 	void setPasajerosActuales(short _pasajerosActuales);
 	
 	void setVelocidad(short _velocidad);
-	
-	void setModelo(cModelo* _modelo);
 	
 	/// <summary>
 	/// Cambia el estado del avion
@@ -74,6 +78,8 @@ public:
 	/// <returns>Cadena concatenada</returns>
 	virtual string to_string() const = 0;
 	
+	string enumToString(eEstado _estado) const;
+
 	/// <summary>
 	/// Controla que un avion no este excedido de su capacidad de pasajeros
 	/// En caso de CESSNA, verifica tambien que el peso no se exceda
@@ -115,6 +121,10 @@ protected:
 	cModelo* modelo;
 };
 
+inline cModelo* cAvion::getModelo() const { return this->modelo; }
+
+inline cCombustible* cAvion::getCombustible() const { return this->modelo->getCombustible(); }
+
 inline short cAvion::getPasajerosActual() const { return this->pasajerosActual; }
 
 inline short cAvion::getLargoAvion() const { return this->largoAvion; }
@@ -122,6 +132,8 @@ inline short cAvion::getLargoAvion() const { return this->largoAvion; }
 inline short cAvion::getAnchoAvion() const { return this->anchoAvion; }
 
 inline eEstado cAvion::getEstado() const { return this->estado; }
+
+inline string cAvion::getID() const { return this->ID; }
 
 inline void cAvion::setDestino(string _destino) { 
 	if (_destino == "")

@@ -31,12 +31,10 @@ public:
 	/// </summary>	
 	~cCESSNA();
 
-	/// <summary>
-	/// Obtiene la carga actual del avion que debera controlar la torre de control
-	/// </summary>
-	/// <returns>Cantidad de carga actual</returns>
 	short getCargaActual() const;
 
+	void setCargaActual(float _cargaActual);
+	
 	/// <summary>
 	/// Aumenta su velocidad, baja los alerones y prende el control automatico de estabilizacion de vuelo
 	/// </summary>
@@ -80,6 +78,12 @@ protected:
 
 inline short cCESSNA::getCargaActual() const { return this->cargaActual; }
 
-inline void cCESSNA::aterrizar() { this->velocidad = velMaxAteCes; }
+inline void cCESSNA::setCargaActual(float _cargaActual) { 
+	if(_cargaActual < 0)
+		throw invalid_argument("Error: La carga del avion que se intenta setear es invalida\n");
+	this->cargaActual = _cargaActual; 
+}
+
+inline ostream& operator<<(ostream& os, const cCESSNA& CESSNA) { return os << CESSNA.to_string(); }
 
 #endif // !CCESSNA_H

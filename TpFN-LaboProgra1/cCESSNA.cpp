@@ -22,29 +22,59 @@ bool cCESSNA::operator>(cModelo* _modelo) {
 	return false;
 }
 
-string cCESSNA::to_string() const {
-	stringstream ss;
-
-	ss << "Avion ID [" << this->ID << "]" << endl
-		<< "Estado: " << this->estado << endl
-		<< "Destino: " << this->destino << endl
-		<< (this->horaSalida != 0 ? ctime(&this->horaSalida) : "El avion no se encuentra volando") << endl
-		<< "Velocidad actual: " << this->velocidad << endl
-		<< "Largo: " << this->largoAvion << "metros" << endl
-		<< "Ancho: " << this->anchoAvion << "metros" << endl
-		<< "Cantidad de helices: " << this->helice << endl
-		<< "Cantidad actual de pasajeros: " << this->pasajerosActual << endl
-		<< "Control automatico: " << this->controlAutomatico << endl
-		<< "Carga actual: " << this->cargaActual << endl
-		<< "Alerones: " << this->alerones << endl;
-	
-	return ss.str();
+void cCESSNA::despegar() {
+	switchEstado(this->estado);
+	this->horaSalida = cFecha::getHorarioActual();
+	this->velocidad = velMaxDesCes;
+	this->alerones = false;
+	this->controlAutomatico = true;
 }
 
-void cCESSNA::despegar() {
-	// Implementrar logica para el despegue
+void cCESSNA::aterrizar() {
+	switchEstado(this->estado);
+	this->velocidad = velMaxAteCes;
 }
 
 void cCESSNA::estacionar() {
-	// Implementar logica para el estacionamiento
+	switchEstado(this->estado);
+	this->horaSalida = 0;
+	this->velocidad = 0;
+	this->alerones = true;
+	this->controlAutomatico = false;
+	this->pasajerosActual = 0;
+	this->cargaActual = 0;
+}
+
+istream& operator>>(istream& is, cCESSNA& CESSNA) {
+	float cargaActualAux = 0;
+	cout << "Ingrese la carga actual: " << endl;
+	is >> cargaActualAux;
+	try {
+		CESSNA.setCargaActual(cargaActualAux);
+	}
+	catch (invalid_argument& e) {
+		cout << e.what() << endl;
+	}
+	return is;
+}
+
+string cCESSNA::to_string() const {
+	stringstream ss;
+
+	ss  << "-----------------------------" << endl
+		<< "Avion ID [" << this->ID << "]" << endl
+		<< "Largo: " << this->largoAvion << "metros" << endl
+		<< "Ancho: " << this->anchoAvion << "metros" << endl
+		<< "Cantidad de helices: " << this->helice << endl
+		<< "Estado: " << enumToString(this->estado) << endl;
+		if (this->estado == eEstado::enVuelo) {
+	ss	    << "Destino: " << this->destino << endl
+			<< "Hora de salida: " << ctime(&this->horaSalida) << endl
+			<< "Velocidad actual: " << this->velocidad << endl
+			<< "Cantidad actual de pasajeros: " << this->pasajerosActual << endl
+			<< "Control automatico: " << this->controlAutomatico << endl
+			<< "Carga actual: " << this->cargaActual << endl
+			<< "Alerones: " << this->alerones << endl;
+	    }
+	return ss.str();
 }

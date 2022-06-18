@@ -11,8 +11,6 @@ int main() {
 			- Juan Manuel Gonzalez Kapnik 
 	*/
 	
-	// Simulacion de un avion en vuelo
-	
 	return 0;
 }
 

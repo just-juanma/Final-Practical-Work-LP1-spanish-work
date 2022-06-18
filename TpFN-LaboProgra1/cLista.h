@@ -14,42 +14,49 @@ public:
 	/// <param name="_cantTotal">: Cantidad total de la lista</param>
 	/// <param name="_checkEliminar">: Se pretende eliminar los punteros internos? si (true)/no (false)</param>
 	cLista(short _cantTotal = MAX_LISTA, bool _checkEliminar = false);
+	
 	/// <summary>
 	/// Destructor por defecto
 	/// </summary>
 	~cLista();
+	
 	/// <summary>
 	/// Agrega un elemento a la lista
 	/// </summary>
 	/// <param name="elemento">: Elemento a agregar</param>
 	void agregar(T* elemento);
+	
 	/// <summary>
 	/// ELIMINA un elemento de la lista
 	/// </summary>
 	/// <param name="elemento">: Elemento a eliminar</param>
 	void eliminar(T* elemento);
+	
 	/// <summary>
 	/// Agrega un elemento mediante "+"
 	/// </summary>
 	/// <param name="elemento">: Elemento a agregar</param>
 	void operator+(T* elemento);
+	
 	/// <summary>
 	/// Elimina un elemento mediante "-"
 	/// </summary>
 	/// <param name="elemento">: ELemento a eliminar</param>
 	void operator-(T* elemento);
+	
 	/// <summary>
 	/// Retorna el elemento[i]
 	/// </summary>
 	/// <param name="i">: Indice del elemento en la lista</param>
 	/// <returns>El i-esimo elemento de la lista</returns>
 	T* operator[](short i);
+	
 	/// <summary>
 	/// Aumenta la capacidad de la lista mediante "++"
 	/// </summary>
 	void operator++();
 
-protected:
+private:
 	
 	/// <summary>
 	/// Aumenta el tamaño de la lista en +1
@@ -66,6 +73,9 @@ protected:
 	/// </summary>
 	/// <returns>True en caso de encontrarlo, false en caso contrario</returns>
 	bool noRepetido(T* elemento);
+	
+protected:
+	
 
 	T** lista;
 	short cantTotal;
@@ -99,66 +109,77 @@ inline cLista<T>::~cLista() {
 
 template <typename T>
 inline void cLista<T>::agregar(T* elemento) {
-	if (this->cantActual == this->cantTotal)
-		throw exception("La cantidad actual esta intentando sobrepasar la total");
-	else if (!elemento)
-		throw exception("El elemento que se intenta agregar no existe");
-	else if (!this->lista)
-		throw exception("La lista aun no fue creada");
-	else if (this->noRepetido(elemento))
-		throw exception("El elemento ya existe en la lista");
-	this->lista[this->cantActual++] = elemento;
+	try {
+		if (this->cantActual == this->cantTotal)
+			throw out_of_range("Error: La cantidad actual de elementos es igual a la cantidad total de elementos");
+		else if (!elemento)
+			throw invalid_argument("Error: El elemento que se intenta agregar no existe");
+		else if (this->noRepetido(elemento))
+			throw invalid_argument("Error: El elemento ya existe en la lista");
+		this->lista[this->cantActual++] = elemento;
+	}
+	catch (out_of_range& e) {
+		cout << e.what() << endl;
+	}
+	catch (invalid_argument& e) {
+		cout << e.what() << endl;
+	}
 }
 
 template <typename T>
 inline void cLista<T>::eliminar(T* elemento) {
-	if (!elemento)
-		throw exception("El elemento que se intenta agregar no existe");
-	else if (!this->lista)
-		throw exception("La lista aun no fue creada");
-	for (ushort i = 0; i < this->cantActual; i++) {
-		if (this->lista[i] == elemento) {
-			delete this->lista[i];
-			this->lista[i] = NULL;
-			ordenar();
-			this->cantActual--;
-			return;
+	try {
+		if (!elemento)
+			throw invalid_argument("Error: El elemento que se intenta eliminar no existe");
+		for (ushort i = 0; i < this->cantActual; i++) {
+			if (this->lista[i] == elemento) {
+				delete this->lista[i];
+				this->lista[i] = NULL;
+				ordenar();
+				this->cantActual--;
+				return;
+			}
 		}
+		throw invalid_argument("Error: El elemento que se intenta eliminar no existe");
 	}
-	throw exception("No se pudo eliminar el elemento");
+	catch (invalid_argument& e) {
+		cout << e.what() << endl;
+	}
 }
 
 template <typename T>
-inline void cLista<T>::resize() {
-	if (!this->lista)
-		throw exception("La lista aun no fue creada");
-	T** tempList = new T * [++this->cantTotal];
-	memcpy(tempList, this->lista, this->cantTotal * sizeof(T*));
-	delete[] tempList;
-	this->lista[this->cantTotal - 1] = NULL;
-	this->lista = tempList;
-}
+inline void cLista<T>::operator+(T* elemento) { agregar(elemento); }
 
 template <typename T>
-inline void cLista<T>::operator+(T* elemento) {
-	agregar(elemento);
-}
-
-template <typename T>
-inline void cLista<T>::operator-(T* elemento) {
-	eliminar(elemento);
-}
+inline void cLista<T>::operator-(T* elemento) { eliminar(elemento); }
 
 template <typename T>
 inline T* cLista<T>::operator[](short i) {
-	if (i >= 0 && i < this->cantActual)
-		return lista[i];
-	throw exception("Se esta intentando acceder a un elemento imposible de acceder");
+	try {
+		if (i >= 0 && i < this->cantActual)
+			return lista[i];
+		throw out_of_range("Error: Se esta intentando acceder a un elemento imposible de acceder");
+	}
+	catch (out_of_range& e) {
+		cout << e.what() << endl;
+	}
 }
 
 template <typename T>
-inline void cLista<T>::operator++() {
-	resize();
+inline void cLista<T>::operator++() { resize(); }
+
+template <typename T>
+inline void cLista<T>::resize() {
+	try {
+		T** tempList = new T * [++this->cantTotal];
+		memcpy(tempList, this->lista, this->cantTotal * sizeof(T*));
+		delete[] tempList;
+		this->lista[this->cantTotal - 1] = NULL;
+		this->lista = tempList;
+	}
+	catch (bad_alloc& e) {
+		cout << e.what() << endl;
+	}
 }
 
 template <typename T>

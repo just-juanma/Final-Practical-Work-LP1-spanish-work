@@ -30,21 +30,22 @@ public:
 	~cBiplano();
 
 	/// <summary>
-	/// Obtiene la velocidad de despegue, su inclinacion cambia
+	/// Aumenta su velocidad, su inclinacion y el estado cambian
 	/// </summary>
 	void despegar();
 
 	/// <summary>
-	/// Disminuye sy velocidad para aterrizar
+	/// Disminuye su velocidad y cambia su estado
 	/// </summary>
 	void aterrizar();
 
 	/// <summary>
-	/// Sube los alerones y apaga el control automatico de estabilizacion de vuelo
-	/// Los pasajeros descienden y se retira la carga
+	/// Equilibra la inclinacion, los pasajeros y la velocidad descienden. Cambia su estado
 	/// </summary>
 	void estacionar();
 
+	string to_string() const;
+	
 	bool operator>(cModelo* _modelo);
 
 	/// <summary>
@@ -59,7 +60,6 @@ public:
 	/// <returns>Flujo de entrada</returns>
 	friend istream& operator>>(istream& is, cBiplano& biplano);
 
-	string to_string() const;
 
 protected:
 
@@ -69,6 +69,6 @@ protected:
 
 };
 
-inline void cBiplano::aterrizar() { this->velocidad = velMaxAteBip; }
+inline ostream& operator<<(ostream& os, const cBiplano& biplano) {	return os << biplano.to_string(); }
 
 #endif // !CBIPLANO_H

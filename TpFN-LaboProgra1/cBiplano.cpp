@@ -13,31 +13,51 @@ cBiplano::cBiplano(string _ID, short _largoAvion, short _anchoAvion, string _des
 
 cBiplano::~cBiplano() { }
 
+void cBiplano::despegar() {
+	switchEstado(this->estado);
+	this->velocidad = velMaxDesBip;
+	this->inclinacion = 25;
+}
+
+void cBiplano::aterrizar() {
+	switchEstado(this->estado);
+	this->velocidad = velMaxAteBip;
+}
+
+void cBiplano::estacionar() {
+	switchEstado(this->estado);
+	this->velocidad = 0;
+	this->inclinacion = 0;
+	this->pasajerosActual = 0;
+}
+
 bool cBiplano::operator>(cModelo* _modelo) {
 	if (this->pasajerosActual > _modelo->getLimitePasajeros())
 		return true;
 	return false;
 }
 
-void cBiplano::despegar() {
-	//Implementrar logica para el despegue
-}
-
-void cBiplano::estacionar() {
-	//Implementar logica para el estacionamiento
+istream& operator>>(istream& is, cBiplano& biplano) {
+	cout << "Ingrese la inclinacion del Biplano: " << endl;
+	is >> biplano.inclinacion;
+	return is;
 }
 
 string cBiplano::to_string() const {
 	stringstream ss;
-	ss << "Avion ID [" << this->ID << "]" << endl
-		<< "Estado: " << this->estado << endl
-		<< "Destino: " << this->destino << endl
-		<< (this->horaSalida != 0 ? ctime(&this->horaSalida) : "El avion no se encuentra volando") << endl
-		<< "Velocidad actual: " << this->velocidad << endl
+	ss	<< "-----------------------------" << endl
+		<< "Avion ID [" << this->ID << "]" << endl
 		<< "Largo: " << this->largoAvion << "metros" << endl
 		<< "Ancho: " << this->anchoAvion << "metros" << endl
 		<< "Cantidad de helices: " << this->helice << endl
-		<< "Cantidad actual de pasajeros: " << this->pasajerosActual << endl
-		<< "Inclinacion del avion: " << this->inclinacion << endl;	
+		<< "Estado: " << enumToString(this->estado) << endl;	
+		if (this->estado == eEstado::enVuelo) {
+	ss		<< "Destino: " << this->destino << endl
+			<< "Hora de salida: " << ctime(&this->horaSalida) << endl
+			<< "Velocidad actual: " << this->velocidad << endl
+			<< "Cantidad actual de pasajeros: " << this->pasajerosActual << endl
+			<< "Inclinacion actual del avion: " << this->inclinacion << endl;			
+		}
+		
 	return ss.str();
 }

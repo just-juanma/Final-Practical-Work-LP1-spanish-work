@@ -1312,13 +1312,30 @@
 											"height": 13,
 											"text": "aterrizando",
 											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLEnumerationLiteralView",
+											"_id": "AAAAAAGBc5KeXXmPSGE=",
+											"_parent": {
+												"$ref": "AAAAAAGA+FIWFupg+iM="
+											},
+											"model": {
+												"$ref": "AAAAAAGBc5KdpXmMh0w="
+											},
+											"font": "Arial;13;0",
+											"left": 981,
+											"top": 127,
+											"width": 116.34619140625,
+											"height": 13,
+											"text": "estacionado",
+											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 976,
 									"top": 62,
 									"width": 126.34619140625,
-									"height": 68
+									"height": 83
 								}
 							],
 							"font": "Arial;13;0",
@@ -1326,7 +1343,7 @@
 							"left": 976,
 							"top": 24,
 							"width": 126.34619140625,
-							"height": 106,
+							"height": 121,
 							"nameCompartment": {
 								"$ref": "AAAAAAGA+FIWFupXby4="
 							},
@@ -7400,6 +7417,14 @@
 								"$ref": "AAAAAAGA+FIWFepUKNE="
 							},
 							"name": "aterrizando"
+						},
+						{
+							"_type": "UMLEnumerationLiteral",
+							"_id": "AAAAAAGBc5KdpXmMh0w=",
+							"_parent": {
+								"$ref": "AAAAAAGA+FIWFepUKNE="
+							},
+							"name": "estacionado"
 						}
 					]
 				},
