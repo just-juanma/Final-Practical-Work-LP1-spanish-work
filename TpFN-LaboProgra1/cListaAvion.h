@@ -25,8 +25,6 @@ public:
 
 	string getID(int pos) const;
 
-	bool repetido(cAvion* avion);
-
 	bool operator==(cAvion* avion);
 
 };
@@ -39,13 +37,6 @@ inline short cListaAvion::getCantTotal() const { return cantTotal; }
 
 inline short cListaAvion::getCantActual() const { return cantActual; }
 
-inline bool cListaAvion::repetido(cAvion* avion) {
-	for (ushort i = 0; i < this->cantActual; i++)
-		if (this->lista[i]->getID() == avion->getID())
-			return true;
-	return false;
-}
-
 inline bool cListaAvion::operator==(cAvion* avion) 
 {
 	for (ushort i = 0; i < this->cantActual; i++) {
@@ -56,6 +47,6 @@ inline bool cListaAvion::operator==(cAvion* avion)
 	return false;
 }
 
-inline string cListaAvion::getID(int _pos) const { return this->lista[0]->getID(); }
+inline string cListaAvion::getID(int _pos) const { return this->lista[_pos]->getID(); }
 
 #endif // !CLISTAAVION_H

@@ -47,7 +47,7 @@ public:
 	
 	short getVelocidad() const;	
 	
-	short getAceleracionAvion() const;
+	short getAceleracion() const;
 
 	void setDestino(string _destino);
 
@@ -128,7 +128,8 @@ protected:
 
 inline short cAvion::getVelocidad() const { return this->velocidad; }
 
-inline short cAvion::getAceleracionAvion() const {return this->modelo->getAceleracionModelo(); }
+inline short cAvion::getAceleracion() const { return this->modelo->getAceleracion(); }
+
 inline cModelo* cAvion::getModelo() const { return this->modelo; }
 
 inline cCombustible* cAvion::getCombustible() const { return this->modelo->getCombustible(); }

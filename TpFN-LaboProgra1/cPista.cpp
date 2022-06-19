@@ -1,9 +1,10 @@
 #include "cPista.h"
 
-cPista::cPista(short _largo, short _ancho):largo(_largo), ancho(_ancho){
-}
+cPista::cPista(float _largo, float _ancho) : 
+	largo(_largo), 
+	ancho(_ancho) { }
 
-cPista::~cPista() {};
+cPista::~cPista() { };
 
 bool cPista::operator==(cAvion* avion) {
 	return (this->largo <= avion->getLargoAvion() && this->ancho <= avion->getAnchoAvion() && this->getLuO());

@@ -1,17 +1,20 @@
 #include "cHangar.h"
 
 cHangar::cHangar(short _cantTotal) {
-	this->almacenados = new cListaAvion(_cantTotal, true);
+	try {
+		this->almacenados = new cListaAvion(_cantTotal, true);
+	}
+	catch (bad_alloc& e) {
+		cout << e.what() << endl;
+	}
 }
 
-cHangar::~cHangar() {
-	delete this->almacenados;
-}
+cHangar::~cHangar() { delete this->almacenados; }
 
-bool cHangar::Almacenar(cAvion* _avion)
+bool cHangar::almacenar(cAvion* _avion)
 {
 	if (_avion) {
-		this->almacenados->agregar(_avion);
+		*this->almacenados + _avion;
 		return true;
 	}
 	else {
@@ -20,23 +23,21 @@ bool cHangar::Almacenar(cAvion* _avion)
 	return false;
 }
 
-cAvion* cHangar::Despachar(short _pos)
+cAvion* cHangar::despachar(short _pos)
 {
-	return this->almacenados[0][_pos];
+	cAvion* aux = this->almacenados[0][_pos];
+	*this->almacenados - almacenados[0][_pos];
+	return aux;
 }
 
 int cHangar::buscarAvion(string ID)
 {
-	for (int i = 0; i < almacenados->getCantTotal(); i++) {
-		string id = almacenados[0][i]->getID();
-		if (id == ID) { 
+	for (ushort i = 0; i < almacenados->getCantTotal(); i++) {
+		if (almacenados[0][i]->getID() == ID) {
 			return i;
 		}
 	}
-}
-
-int cHangar::getCantActual() {
-	return this->almacenados->getCantTotal();
+	return -1;
 }
 
 bool cHangar::operator==(cAvion* avion)
@@ -46,6 +47,7 @@ bool cHangar::operator==(cAvion* avion)
 			return true;
 		}
 	}
+	return false;
 }
 
 

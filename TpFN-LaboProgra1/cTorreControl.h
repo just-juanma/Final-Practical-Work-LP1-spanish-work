@@ -11,16 +11,19 @@ class cTorreControl
 public:
 	
 	/// <summary>
-	/// Constructor por defecto
+	/// Constructor parametrizado por defecto
 	/// </summary>
-	cTorreControl(ushort tamHangar = MAX_LISTA, ushort tamlista = MAX_LISTA);
-	
+	/// <param name="tamHangar">: Capacidad del hangar</param>
+	/// <param name="tamlista">: Capacidad de la lista</param>
+	/// <param name="largo">: Largo de la pista</param>
+	/// <param name="ancho">: Ancho de la pista</param>
+	cTorreControl(short tamHangar = MAX_LISTA, short tamlista = MAX_LISTA,
+				  float largo = MAX_PISTA, float ancho = MAX_PISTA);
+
 	/// <summary>
 	/// Destructor por defecto
 	/// </summary>	
 	~cTorreControl();
-
-	void setLista(cListaAvion* lista);
 	
 	/// <summary>
 	/// Recibe el avion busca asignarlo a la pista
@@ -28,12 +31,6 @@ public:
 	/// <param name="avion">: avion que busca pista</param>
 	/// <returns>True en caso de poder, false en caso contrario</returns>
 	bool asignarPistaAvion(cAvion* avion);
-
-	/// <summary>
-	/// Recibe la pista que se le deasea asignar a la torre de control
-	/// </summary>
-	/// <param name="pista"></param>
-	void setPista(cPista* pista);
 	
 	/// <summary>
 	/// Permite al avion despegar, sin antes hacer su checkeo interno y su relacion con la pista
@@ -67,7 +64,5 @@ private:
 	cListaAvion* lista;
 	cHangar* hangar;
 };
-
-inline void cTorreControl::setLista(cListaAvion* _lista) { this->lista = _lista; }
 
 #endif // !CTORRECONTROL_H

@@ -30,7 +30,7 @@ public:
 	
 	float getLimiteCarga() const;
 	
-	float getAceleracionModelo() const;
+	float getAceleracion() const;
 	
 private:
 	
@@ -48,6 +48,6 @@ inline short cModelo::getLimitePasajeros() const { return this->limitePasajeros;
 
 inline float cModelo::getLimiteCarga() const { return this->limiteCarga; }
 
-inline float cModelo::getAceleracionModelo() const { return this->aceleracion; }
+inline float cModelo::getAceleracion() const { return this->aceleracion; }
 
 #endif // !CMODELO_H

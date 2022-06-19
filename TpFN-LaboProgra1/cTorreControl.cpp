@@ -1,26 +1,21 @@
 #include "cTorreControl.h"
 
-cTorreControl::cTorreControl(ushort _tamHangar, ushort _tamlista) {
-	this->hangar = new cHangar(_tamHangar); 
-	this->lista = new cListaAvion(_tamlista); 
-	this->pista = NULL;
-}
-
-cTorreControl::~cTorreControl() { }; 
-
-
-bool cTorreControl::autorizarDespegue(cAvion* avion) {
-	
-	for (int i = 0; i < this->lista->getCantTotal(); i++) {
-		if (*pista == avion) {
-			*this->lista - avion;
-			avion->despegar();
-		}
-		else {
-			throw exception("El avion no puede despegar hay un avion en la pista");
-		}
+cTorreControl::cTorreControl(short _tamHangar, short _tamlista, float largo, float ancho) {
+	try {
+		this->hangar = new cHangar(_tamHangar); 
+		this->lista = new cListaAvion(_tamlista); 
+		this->pista = new cPista(largo, ancho);
+	}
+	catch (bad_alloc& e) {
+		cout << e.what() << endl;
 	}
 }
+
+cTorreControl::~cTorreControl() { 
+	delete this->hangar; 
+	delete this->lista; 
+	delete this->pista; 
+}; 
 
 void cTorreControl::imprimirDetalles()
 {
@@ -49,17 +44,12 @@ bool cTorreControl::operator!=(cAvion* avion)
 	return true;
 }
 
-void cTorreControl::setPista(cPista* _pista) {
-	this->pista = _pista;
-}
-
 bool cTorreControl::asignarPistaAvion(cAvion* avion) 
 {
 	if (*this->pista == avion) {
 		this->autorizarAterrizaje(avion);
 	};
 }
-
 
 bool cTorreControl::autorizarAterrizaje(cAvion* _avion) {
 	
@@ -68,7 +58,7 @@ bool cTorreControl::autorizarAterrizaje(cAvion* _avion) {
 			_avion->aterrizar();
 			pista->switchLuO();
 			*this->lista + _avion;
-			if (hangar->Almacenar(_avion)) {
+			if (hangar->almacenar(_avion)) {
 				pista->switchLuO();
 				return true;
 			}
@@ -87,7 +77,7 @@ bool  cTorreControl::autorizarDespegue(cAvion* _avion) {
 		if (pista->getLuO()) {
 			short avi = hangar->buscarAvion(_avion->getID());
 			*this->lista - _avion;
-			*this->hangar->Despachar(avi); //averigaur si se decide devolver el avion despachado
+			*this->hangar->despachar(avi); //averigaur si se decide devolver el avion despachado
 			_avion->despegar();
 			pista->switchLuO();
 			return true;

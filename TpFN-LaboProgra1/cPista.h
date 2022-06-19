@@ -12,7 +12,7 @@ public:
 	/// </summary>
 	/// <param name="_largo">: Largo admitido por la pista (en km)</param>
 	/// <param name="_ancho">: Ancho admitido por la pista (en km)</param>
-	cPista(short _largo = MAX_PISTA, short _ancho = MAX_PISTA);
+	cPista(float _largo = MAX_PISTA, float _ancho = MAX_PISTA);
 
 	/// <summary>
 	/// Destructor por defecto
@@ -35,10 +35,11 @@ public:
 	/// <returns>Posicion final del avion</returns>
 	float getPosicionFinalAvion(cAvion* avion);
 
-	short getLargoPista() const; 
-	short getAnchoPista() const;
+	float getLargoPista() const; 
+	float getAnchoPista() const;
 	bool getLuO() const;
 	void switchLuO();
+	
 private:
 	
 	/// <summary>
@@ -58,14 +59,14 @@ private:
 	
 	
 
-	const short largo;
-	const short ancho;	
+	const float largo;
+	const float ancho;	
 	bool LuO; // Libre u Ocupado
 };
 
-inline short cPista::getLargoPista() const{	return this->largo;}
+inline float cPista::getLargoPista() const{	return this->largo;}
 
-inline short cPista::getAnchoPista() const { return this->ancho; }
+inline float cPista::getAnchoPista() const { return this->ancho; }
 
 inline float cPista::conversor(cAvion* avion) const { return (avion->getVelocidad() * 0.277778); }
 
