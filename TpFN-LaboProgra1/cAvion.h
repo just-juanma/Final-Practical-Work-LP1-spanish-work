@@ -44,6 +44,10 @@ public:
 	cModelo* getModelo() const;
 	
 	cCombustible* getCombustible() const;
+	
+	short getVelocidad() const;	
+	
+	short getAceleracionAvion() const;
 
 	void setDestino(string _destino);
 
@@ -71,6 +75,7 @@ public:
 	/// Genera los cambios necesarios para que el avion pueda estacionar
 	/// </summary>
 	virtual void estacionar() = 0;
+	
 
 	/// <summary>
 	/// Segun el avion, concatena todos los datos en un solo string
@@ -121,6 +126,9 @@ protected:
 	cModelo* modelo;
 };
 
+inline short cAvion::getVelocidad() const { return this->velocidad; }
+
+inline short cAvion::getAceleracionAvion() const {return this->modelo->getAceleracionModelo(); }
 inline cModelo* cAvion::getModelo() const { return this->modelo; }
 
 inline cCombustible* cAvion::getCombustible() const { return this->modelo->getCombustible(); }

@@ -30,6 +30,8 @@ public:
 	
 	float getLimiteCarga() const;
 	
+	float getAceleracionModelo() const;
+	
 private:
 	
 	const string nombre;
@@ -45,5 +47,7 @@ inline cCombustible* cModelo::getCombustible() const { return combustible; }
 inline short cModelo::getLimitePasajeros() const { return this->limitePasajeros; }
 
 inline float cModelo::getLimiteCarga() const { return this->limiteCarga; }
+
+inline float cModelo::getAceleracionModelo() const { return this->aceleracion; }
 
 #endif // !CMODELO_H

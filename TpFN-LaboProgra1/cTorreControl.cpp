@@ -8,67 +8,94 @@ cTorreControl::cTorreControl(ushort _tamHangar, ushort _tamlista) {
 
 cTorreControl::~cTorreControl() { }; 
 
-//bool cTorreControl::asignarPista(cPista* _pista) { 
-//	this->pista = _pista; 
-//}
 
-//bool cTorreControl::autorizarDespegue(cAvion* avion) {
-//	
-//	for (int i = 0; i < this->lista->getCantTotal(); i++) {
-//		if (*pista == avion) {
-//			*this->lista - avion;
-//			avion->despegar();
-//		}
-//		else {
-//			throw exception("El avion no puede despegar hay un avion en la pista");
-//		}
-//	}
-//}
+bool cTorreControl::autorizarDespegue(cAvion* avion) {
+	
+	for (int i = 0; i < this->lista->getCantTotal(); i++) {
+		if (*pista == avion) {
+			*this->lista - avion;
+			avion->despegar();
+		}
+		else {
+			throw exception("El avion no puede despegar hay un avion en la pista");
+		}
+	}
+}
 
-//void cTorreControl::imprimirDetalles()
-//{
-//	stringstream slt;
-//	for (ushort i = 0; i < this->lista->cantActual; i++) {
-//		slt << this->lista[0][i]->imprimir(); 
-//	}
-//	for (ushort i = 0; i < this->hangar->getCantActual(); i++) {
-//		slt << this->lista[0][i]->imprimir(); 
-//	}
-//	cout << slt.str() << endl;
-//}
+void cTorreControl::imprimirDetalles()
+{
+	stringstream slt;
+	for (ushort i = 0; i < this->lista->cantActual; i++) {
+		slt << this->lista[0][i]->to_string(); 
+	}
+	for (ushort i = 0; i < this->hangar->getCantActual(); i++) {
+		slt << this->lista[0][i]->to_string(); 
+	}
+	cout << slt.str() << endl;
+}
 
-//bool cTorreControl::operator!=(cAvion* avion)
-//{
-//	for(ushort i=0;i<this->lista->cantActual;i++){
-//		if (*this->lista[i][0] == avion) { error en esta linea
-//			return false;
-//		}
-//	}
-//	for (ushort i = 0; i < this->hangar->getCantActual(); i++) {
-//		if (*this->hangar == avion) {
-//			return false;
-//		}
-//	}
-//	return true;
-//}
+bool cTorreControl::operator!=(cAvion* avion)
+{
+	for(ushort i=0;i<this->lista->cantActual;i++){
+		if (this->lista[i][0]->getID() == avion->getID()) {
+			return false;
+		}
+	}
+	for (ushort i = 0; i < this->hangar->getCantActual(); i++) {
+		if (*this->hangar == avion) {
+			return false;
+		}
+	}
+	return true;
+}
 
-//bool cTorreControl::asignarPista(cAvion* avion) 
-//{
-//	if (*this->pista == avion) {
-//		this->autorizarAterrizaje(avion);
-//	};
-//}
+void cTorreControl::setPista(cPista* _pista) {
+	this->pista = _pista;
+}
+
+bool cTorreControl::asignarPistaAvion(cAvion* avion) 
+{
+	if (*this->pista == avion) {
+		this->autorizarAterrizaje(avion);
+	};
+}
 
 
-//bool cTorreControl::autorizarAterrizaje(cAvion* avion) {
-//	
-//	for (int i = 0; i < this->lista->getCantTotal(); i++) {
-//		if(this->pista->getposicionFinal()<this->pista->getLargo()&&*pista==avion){
-//			avion->switchEstado(aterrizando);
-//			avion->aterrizar();
-//			*this->lista+avion;
-//	}
-//	Hacer aca un switch de que quiere hacer el avion,Por ejemplo: 
-//  definir si va al hangar o decide recargar combustible y luego despegar
-//	
-//}
+bool cTorreControl::autorizarAterrizaje(cAvion* _avion) {
+	
+	for (int i = 0; i < this->lista->getCantTotal(); i++) {
+		if (this->pista->getPosicionFinalAvion(_avion) < this->pista->getLargoPista() && *pista == _avion&&this->pista->getLuO()) {
+			_avion->aterrizar();
+			pista->switchLuO();
+			*this->lista + _avion;
+			if (hangar->Almacenar(_avion)) {
+				pista->switchLuO();
+				return true;
+			}
+			else {
+				throw exception("El avion no pudo ser almacenado");
+			}
+		}
+		else {
+			throw exception("El avion no puede aterrizar hay un avion en la pista");
+		}
+	}
+}
+
+bool  cTorreControl::autorizarDespegue(cAvion* _avion) {
+	for (int i = 0; i < this->lista->getCantTotal(); i++) {
+		if (pista->getLuO()) {
+			short avi = hangar->buscarAvion(_avion->getID());
+			*this->lista - _avion;
+			*this->hangar->Despachar(avi); //averigaur si se decide devolver el avion despachado
+			_avion->despegar();
+			pista->switchLuO();
+			return true;
+		}
+		else {
+			throw error_pista_ocupada();
+			return false;
+		}
+	}
+	return false;
+}

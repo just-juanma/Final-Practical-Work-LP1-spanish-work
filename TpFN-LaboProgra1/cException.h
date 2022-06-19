@@ -88,4 +88,25 @@ public:
 	}
 };
 
+class error_null_avion :public exception {
+public: 
+	const char* what()const throw() {
+		return "Error: El avion no existe";
+	}
+};
+
+
+class error_avion_almacenado :public exception {
+public:
+	const char* what()const throw() {
+		return "Error: El avion no pudo ser almacenado";
+	}
+};
+
+class error_pista_ocupada :public exception {
+public:
+	const char* what()const throw() {
+		return "Error: no se puede usar la pista, esta misma esta ocupada";
+	}
+};
 #endif // !CEXCEPTION_H

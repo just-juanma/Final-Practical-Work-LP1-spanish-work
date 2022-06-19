@@ -27,7 +27,13 @@ public:
 	/// </summary>
 	/// <param name="avion">: avion que busca pista</param>
 	/// <returns>True en caso de poder, false en caso contrario</returns>
-	bool asignarPista(cPista* pista);
+	bool asignarPistaAvion(cAvion* avion);
+
+	/// <summary>
+	/// Recibe la pista que se le deasea asignar a la torre de control
+	/// </summary>
+	/// <param name="pista"></param>
+	void setPista(cPista* pista);
 	
 	/// <summary>
 	/// Permite al avion despegar, sin antes hacer su checkeo interno y su relacion con la pista
