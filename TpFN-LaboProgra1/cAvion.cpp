@@ -14,9 +14,9 @@ cAvion::cAvion(string _ID, float _largoAvion, float _anchoAvion, short _helice, 
 	this->pasajerosActual = _pasajerosActual;
 	this->horaSalida = _horaSalida;
 	try {
-		if (this->ID == "01")      this->modelo = new cModelo("CESSNA C-210N CENTURION", 200.6, 1, 10, 2, 10);
-		else if (this->ID == "02") this->modelo = new cModelo("CESSNA C10T CC-PON", 182.1, 1.3, 9, 3, 21);
-		else if (this->ID == "03") this->modelo = new cModelo("Cessna P210N Particular", 170.3, 1.2, 11, 0, 50);
+		if (this->ID == "01")      this->modelo = new cModelo("CESSNA C-210N CENTURION", float(200.6), 1, 10, 2, 10);
+		else if (this->ID == "02") this->modelo = new cModelo("CESSNA C10T CC-PON", float(182.1), float(1.3), 9, 3, 21);
+		else if (this->ID == "03") this->modelo = new cModelo("Cessna P210N Particular", float(170.3), float(1.2), 11, 0, 50);
 		// Bato: seguir con 7 ID mas, tienen que haber modelos para 10 aviones (5 CESSNA y 5 Biplanos)
 		else throw null_modelo();
 	}
@@ -33,11 +33,12 @@ cAvion::~cAvion() {	delete this->modelo; }
 string cAvion::enumToString(eEstado _estado) const {
 	switch (_estado)
 	{
-	case eEstado::desconocido: return "desconocido";
-	case eEstado::despegando:  return "despegando";
-	case eEstado::enVuelo:     return "en vuelo";
-	case eEstado::aterrizando: return "aterrizando";
-	case eEstado::estacionado: return "estacionado";
+		case eEstado::desconocido: return "desconocido";
+		case eEstado::despegando:  return "despegando";
+		case eEstado::enVuelo:     return "en vuelo";
+		case eEstado::aterrizando: return "aterrizando";
+		case eEstado::estacionado: return "estacionado";
+		default:				   return "desconocido";
 	}
 }
 
@@ -62,18 +63,18 @@ void cAvion::switchEstado(eEstado _estado) {
 	catch (null_status& e) {
 		cout << e.what();
 	}
-	
+	return;
 }
 
 bool cAvion::operator<(cCombustible* _combustible) {
 	try {
 		if(this->horaSalida + _combustible->getDuracion()->getHorarioEsperado() >= cFecha::getHorarioActual())
 			return true;
-		return false;
 	}
 	catch (invalid_argument& e) {
 		cout << e.what();
 	}
+	return false;
 }
 
 istream& operator>>(istream& is, cAvion& avion) {
