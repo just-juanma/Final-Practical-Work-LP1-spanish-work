@@ -36,6 +36,16 @@ inline cListaAvion::~cListaAvion() { }
 
 inline short cListaAvion::getCantActual() const { return cantActual; }
 
-inline bool cListaAvion::operator==(cAvion* _avion) { return noRepetido(_avion); }
+inline bool cListaAvion::operator==(cAvion* _avion) { 
+	try {
+		if (!_avion)
+			throw error_null_avion();
+		return noRepetido(_avion);
+	}
+	catch (error_null_avion& e) {
+		cout << e.what();
+	}
+	return false;
+}
 
 #endif // !CLISTAAVION_H

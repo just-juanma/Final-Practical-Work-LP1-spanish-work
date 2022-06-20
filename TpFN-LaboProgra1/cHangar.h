@@ -26,13 +26,13 @@ public:
 	/// Se agrega a la lista de aviones almacenados 
 	/// </summary>
 	/// <param name="avion">Avion a agregar</param>
-	bool almacenar(cAvion* avion);
+	bool almacenar(cAvion* _avion);
 	
 	/// <summary>
 	/// Se saca el avion de la lista
 	/// </summary>
 	/// <param name="pos">Posicion en el hangar que se desea devolver</param>
-	void despachar(cAvion* avion);
+	void despachar(cAvion* _avion);
 	
 	
 private: 

@@ -33,12 +33,11 @@ public:
 	/// para calcular el tiempo que tardara en aterrizar el avion y luego su posicion final
 	/// </summary>
 	/// <param name="avion">: Avion a obtener su posicion final</param>
-	/// <returns>Posicion final del avion</returns>
-	float getPosicionFinalAvion(cAvion* avion);
-
-	float getLargoPista() const; 
-	float getAnchoPista() const;
+	/// <returns>Posicion final del avion</returns>	
+	float getPosicionFinal(cAvion* avion);
+	
 	bool getLuO() const;
+	
 	void switchLuO();
 	
 private:
@@ -62,10 +61,6 @@ private:
 	bool LuO; // Libre u Ocupado
 	
 };
-
-inline float cPista::getLargoPista() const{	return this->largo;}
-
-inline float cPista::getAnchoPista() const { return this->ancho; }
 
 inline float cPista::conversor(cAvion* avion) const { return (avion->getVelocidad() * 0.277778); }
 
