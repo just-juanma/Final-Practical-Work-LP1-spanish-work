@@ -23,31 +23,4 @@ bool cHangar::almacenar(cAvion* _avion)
 	return false;
 }
 
-cAvion* cHangar::despachar(short _pos)
-{
-	cAvion* aux = this->almacenados[0][_pos];
-	*this->almacenados - almacenados[0][_pos];
-	return aux;
-}
-
-int cHangar::buscarAvion(string ID)
-{
-	for (ushort i = 0; i < almacenados->getCantTotal(); i++) {
-		if (almacenados[0][i]->getID() == ID) {
-			return i;
-		}
-	}
-	return -1;
-}
-
-bool cHangar::operator==(cAvion* avion)
-{
-	for (ushort i = 0; i < this->almacenados->getCantActual(); i++) {
-		if (this->almacenados[0][i] == avion) {
-			return true;
-		}
-	}
-	return false;
-}
-
-
+void cHangar::despachar(cAvion* avion) { *this->almacenados - avion; }

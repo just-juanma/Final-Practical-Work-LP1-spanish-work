@@ -3,6 +3,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #define MAX_LISTA 4
 #define MAX_PISTA 50
+#define RANDOM 0
 
 #include <iostream>
 #include <string>

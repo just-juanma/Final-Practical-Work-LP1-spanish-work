@@ -6,6 +6,7 @@
 
 class cHangar
 {
+	friend class cTorreControl;
 public:
 	
 	/// <summary>
@@ -19,6 +20,8 @@ public:
 	/// </summary>
 	~cHangar(); 
 
+	short getCantActual();
+	
 	/// <summary>
 	/// Se agrega a la lista de aviones almacenados 
 	/// </summary>
@@ -29,19 +32,8 @@ public:
 	/// Se saca el avion de la lista
 	/// </summary>
 	/// <param name="pos">Posicion en el hangar que se desea devolver</param>
-	/// <returns></returns>
-	cAvion* despachar(short pos);
+	void despachar(cAvion* avion);
 	
-	/// <summary>
-	/// Se retorna el avion de la lista
-	/// </summary>
-	/// <param name="ID">ID del avion que se desea buscar</param>
-	/// <returns></returns>
-	int buscarAvion(string ID);
-	
-	short getCantActual();
-	
-	bool operator==(cAvion* avion);
 	
 private: 
 	

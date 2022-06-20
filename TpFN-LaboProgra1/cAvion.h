@@ -33,9 +33,9 @@ public:
 	
 	short getPasajerosActual() const;
 	
-	short getLargoAvion() const;
+	float getLargoAvion() const;
 
-	short getAnchoAvion() const;
+	float getAnchoAvion() const;
 	
 	eEstado getEstado() const;
 	
@@ -47,7 +47,7 @@ public:
 	
 	short getVelocidad() const;	
 	
-	short getAceleracion() const;
+	float getAceleracion() const;
 
 	void setDestino(string _destino);
 
@@ -55,10 +55,6 @@ public:
 	
 	void setVelocidad(short _velocidad);
 	
-	/// <summary>
-	/// Cambia el estado del avion
-	/// </summary>
-	/// <param name="_estado">: Estado a cambiar</param>
 	void switchEstado(eEstado _estado);
 	
 	/// <summary>
@@ -114,9 +110,9 @@ public:
 	
 protected:
 	
+	const string ID;
 	const float largoAvion;
 	const float anchoAvion;
-	const string ID;
 	short helice;
 	short pasajerosActual;
 	short velocidad;
@@ -128,7 +124,7 @@ protected:
 
 inline short cAvion::getVelocidad() const { return this->velocidad; }
 
-inline short cAvion::getAceleracion() const { return this->modelo->getAceleracion(); }
+inline float cAvion::getAceleracion() const { return this->modelo->getAceleracion(); }
 
 inline cModelo* cAvion::getModelo() const { return this->modelo; }
 
@@ -136,9 +132,9 @@ inline cCombustible* cAvion::getCombustible() const { return this->modelo->getCo
 
 inline short cAvion::getPasajerosActual() const { return this->pasajerosActual; }
 
-inline short cAvion::getLargoAvion() const { return this->largoAvion; }
+inline float cAvion::getLargoAvion() const { return this->largoAvion; }
 
-inline short cAvion::getAnchoAvion() const { return this->anchoAvion; }
+inline float cAvion::getAnchoAvion() const { return this->anchoAvion; }
 
 inline eEstado cAvion::getEstado() const { return this->estado; }
 

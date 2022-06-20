@@ -19,13 +19,14 @@ public:
 
 	~cListaAvion();
 
-	short getCantTotal() const;
-
 	short getCantActual() const;
 
-	string getID(int pos) const;
-
-	bool operator==(cAvion* avion);
+	/// <summary>
+	/// Checkea que el avion no se encuentre repetido
+	/// </summary>
+	/// <param name="_avion">: Avion a buscar</param>
+	/// <returns></returns>
+	bool operator==(cAvion* _avion);
 
 };
 
@@ -33,20 +34,8 @@ inline cListaAvion::cListaAvion(short _cantTotal, bool _checkEliminar) : cLista(
 
 inline cListaAvion::~cListaAvion() { }
 
-inline short cListaAvion::getCantTotal() const { return cantTotal; }
-
 inline short cListaAvion::getCantActual() const { return cantActual; }
 
-inline bool cListaAvion::operator==(cAvion* avion) 
-{
-	for (ushort i = 0; i < this->cantActual; i++) {
-		if (this->lista[0][i].getID() == avion->getID()) {
-			return true;
-		}
-	}
-	return false;
-}
-
-inline string cListaAvion::getID(int _pos) const { return this->lista[_pos]->getID(); }
+inline bool cListaAvion::operator==(cAvion* _avion) { return noRepetido(_avion); }
 
 #endif // !CLISTAAVION_H

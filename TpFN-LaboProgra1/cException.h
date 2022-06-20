@@ -24,55 +24,19 @@ public:
 	}
 };
 
-class error_despegue_cessna : public exception {
+class error_despegue : public exception {
 public: 
 	const char* what() const throw() {
-		return "Error: No se pudo despegar el cessna\n";
+		return "Error: No pudo despegar el avion\n";
 	}
 };
 
-class error_despegue_biplano : public exception {
+class error_aterrizaje :public exception {
 public:
 	const char* what() const throw() {
-		return "Error: No se pudo despegar el biplano\n";
-	}
-};
-
-class error_aterrizaje_cessna :public exception {
-public:
-	const char* what() const throw() {
-		return "Error: No se pudo aterrizar el cessna\n";
+		return "Error: No se pudo aterrizar el avion\n";
 	}
 }; 
-
-
-class error_aterrizaje_biplano :public exception {
-public:
-	const char* what() const throw() {
-		return "Error: No se pudo aterrizar el biplano\n";
-	}
-};
-
-class error_tanque_cessna :public exception {
-public:
-	const char* what() const throw() {
-		return "Error: tanque del cessna\n";
-	}
-};
-
-class error_tanque_biplano :public exception {
-public:
-	const char* what() const throw() {
-		return "Error: tanque del biplano\n";
-	}
-};
-
-class error_tiempoMaximo :public exception {
-public:
-	const char* what() const throw() {
-		return "Error: El tiempo máximo de vuelo, no alcanza\n";
-	}
-};
 
 class error_largo_pista :public exception {
 public:
@@ -95,6 +59,12 @@ public:
 	}
 };
 
+class error_incidente : public exception {
+public:
+	const char* what() const throw() {
+		return "Error: El avion se encuentra en un incidente\n";
+	}
+};
 
 class error_avion_almacenado :public exception {
 public:
@@ -109,4 +79,6 @@ public:
 		return "Error: no se puede usar la pista, esta misma esta ocupada";
 	}
 };
+
+
 #endif // !CEXCEPTION_H

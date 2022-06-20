@@ -26,6 +26,7 @@ public:
 	/// <returns>True en caso de poder aterrizar, false en caso contrario</returns>
 	bool operator==(cAvion* avion);
 
+	void operator=(cAvion* avion);
 
 	/// <summary>
 	/// Debido a la velocidad inicial, y aceleracion del avion este metodo utiliza MRUV 
@@ -56,12 +57,10 @@ private:
 	/// <returns>Tiempo que tardara el avion en aterrizar (idealmente)</returns>
 	float getTiempoIdeal(cAvion* avion) const;
 
-	
-	
-
 	const float largo;
 	const float ancho;	
 	bool LuO; // Libre u Ocupado
+	
 };
 
 inline float cPista::getLargoPista() const{	return this->largo;}
@@ -70,10 +69,12 @@ inline float cPista::getAnchoPista() const { return this->ancho; }
 
 inline float cPista::conversor(cAvion* avion) const { return (avion->getVelocidad() * 0.277778); }
 
-inline float cPista::getTiempoIdeal(cAvion* avion) const { return -(this->conversor(avion)) /* / -(cModelo::getAceleracion(avion))*/; }
+inline float cPista::getTiempoIdeal(cAvion* avion) const { return this->conversor(avion) / avion->getAceleracion(); }
 
 inline bool cPista::getLuO()const {return this->LuO;}
 
 inline void cPista::switchLuO() { if (this->LuO == true) { this->LuO = false; } else { this->LuO = true; } }
+
+inline void cPista::operator=(cAvion* avion) { switchLuO(); }
 
 #endif // !CPISTA_H

@@ -19,73 +19,72 @@ cTorreControl::~cTorreControl() {
 
 void cTorreControl::imprimirDetalles()
 {
-	stringstream slt;
-	for (ushort i = 0; i < this->lista->cantActual; i++) {
-		slt << this->lista[0][i]->to_string(); 
-	}
-	for (ushort i = 0; i < this->hangar->getCantActual(); i++) {
-		slt << this->lista[0][i]->to_string(); 
-	}
-	cout << slt.str() << endl;
+	cout << "-----------------------------" << endl
+		 << "Aviones fuera del hangar: " << endl;
+	for (ushort i = 0; i < this->lista->cantActual; i++)
+		cout << *this->lista[0][i];
+	cout << "-----------------------------" << endl 
+		 << "Aviones en el hangar: " << endl;
+	for (ushort i = 0; i < this->hangar->getCantActual(); i++)
+		cout << *this->lista[0][i];
 }
 
 bool cTorreControl::operator!=(cAvion* avion)
 {
-	for(ushort i=0;i<this->lista->cantActual;i++){
-		if (this->lista[i][0]->getID() == avion->getID()) {
-			return false;
-		}
-	}
-	for (ushort i = 0; i < this->hangar->getCantActual(); i++) {
-		if (*this->hangar == avion) {
-			return false;
-		}
-	}
-	return true;
-}
-
-bool cTorreControl::asignarPistaAvion(cAvion* avion) 
-{
-	if (*this->pista == avion) {
-		this->autorizarAterrizaje(avion);
-	};
-}
-
-bool cTorreControl::autorizarAterrizaje(cAvion* _avion) {
-	
-	for (int i = 0; i < this->lista->getCantTotal(); i++) {
-		if (this->pista->getPosicionFinalAvion(_avion) < this->pista->getLargoPista() && *pista == _avion&&this->pista->getLuO()) {
-			_avion->aterrizar();
-			pista->switchLuO();
-			*this->lista + _avion;
-			if (hangar->almacenar(_avion)) {
-				pista->switchLuO();
-				return true;
-			}
-			else {
-				throw exception("El avion no pudo ser almacenado");
-			}
-		}
-		else {
-			throw exception("El avion no puede aterrizar hay un avion en la pista");
-		}
-	}
-}
-
-bool  cTorreControl::autorizarDespegue(cAvion* _avion) {
-	for (int i = 0; i < this->lista->getCantTotal(); i++) {
-		if (pista->getLuO()) {
-			short avi = hangar->buscarAvion(_avion->getID());
-			*this->lista - _avion;
-			*this->hangar->despachar(avi); //averigaur si se decide devolver el avion despachado
-			_avion->despegar();
-			pista->switchLuO();
+	if(this->lista->noRepetido(avion))
 			return true;
-		}
-		else {
-			throw error_pista_ocupada();
-			return false;
-		}
-	}
 	return false;
 }
+
+void cTorreControl::autorizarDespegue(cAvion* _avion) {
+	try {
+		if (this->pista->getLuO() &&				// control que la pista este libre
+			!(*_avion > _avion->getModelo()) &&		// control que no se exceda el limite de pasajeros, y de carga (dependiendo el tipo)
+			*this != _avion) {						// control que el avion este registrado						
+			this->hangar->despachar(_avion);		// se despacha el avion del hangar
+			_avion->despegar();						// despegue del avion
+			this->pista->switchLuO();				// cambia el estado de la pista
+		}
+		else {
+			throw error_despegue();
+		}
+	}
+	catch (error_despegue& e) {
+		cout << e.what();
+	}
+}	
+
+void cTorreControl::autorizarAterrizaje(cAvion* _avion) {
+	try {											
+		if (*this->pista == _avion &&				// control que el avion pueda aterrizar en la pista
+			!(* _avion > _avion->getModelo())) {    // control que no se exceda el limite de pasajeros, y de carga (dependiendo el tipo)
+			_avion->aterrizar();					// aterrizaje del avion
+			*this->pista = _avion;				    // reserva el avion en la pista
+			*this->lista + _avion;					// se agrega al registro de aviones a controlar
+		}
+		else
+			throw error_aterrizaje();
+	}
+	catch (error_aterrizaje& e) {
+		cout << e.what();
+	}
+}
+
+void cTorreControl::autorizarEstacionamiento(cAvion* _avion) {
+	_avion->estacionar();							// estacionamiento del avion
+	this->hangar->almacenar(_avion);				// almacenamiento del avion
+	this->pista->switchLuO();						// cambio de estado de la pista
+}													
+													
+void cTorreControl::verificarHorario(cAvion* _avion) {
+	try {
+		if (*_avion < _avion->getCombustible())
+			cout << "El avion se encuentra en horario" << endl;
+		else
+			throw error_incidente();
+	}
+	catch (error_incidente& e) {
+		cout << e.what();
+	}
+}
+

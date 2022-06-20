@@ -3,7 +3,7 @@
 ushort cBiplano::velMaxDesBip = 240;
 ushort cBiplano::velMaxAteBip = 220;
 
-cBiplano::cBiplano(string _ID, short _largoAvion, short _anchoAvion, string _destino,
+cBiplano::cBiplano(string _ID, float _largoAvion, float _anchoAvion, string _destino,
 	short _pasajerosActuales, eEstado _estado, short _velocidad, time_t _horaSalida,
 	float _inclinacion) : 
 	cAvion(_ID, _largoAvion, _anchoAvion, 2, _destino, _pasajerosActuales, _estado, _velocidad, _horaSalida) 

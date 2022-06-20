@@ -5,7 +5,7 @@ ushort cCESSNA::velMaxAteCes = 180;
 
 cCESSNA::cCESSNA(string _ID, float _largoAvion, float _anchoAvion, string _destino,
 	short _pasajerosActuales, eEstado _estado, short _velocidad, time_t _horaSalida,
-	bool _controlAutomatico, short _cargaActual, bool _alerones) : 
+	bool _controlAutomatico, float _cargaActual, bool _alerones) : 
 	cAvion(_ID, _largoAvion, _anchoAvion, 1, _destino, _pasajerosActuales, _estado, _velocidad, _horaSalida)
 {
 	this->controlAutomatico = _controlAutomatico;

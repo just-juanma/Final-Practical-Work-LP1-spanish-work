@@ -55,8 +55,9 @@ public:
 	/// Aumenta la capacidad de la lista mediante "++"
 	/// </summary>
 	void operator++();
-
-private:
+	
+	
+protected:
 	
 	/// <summary>
 	/// Aumenta el tamaño de la lista en +1
@@ -73,9 +74,6 @@ private:
 	/// </summary>
 	/// <returns>True en caso de encontrarlo, false en caso contrario</returns>
 	bool noRepetido(T* elemento);
-	
-protected:
-	
 
 	T** lista;
 	short cantTotal;

@@ -20,7 +20,7 @@ public:
 	/// <param name="_velocidad">: Velocidad actual del avion</param>
 	/// <param name="_horaSalida">: Hora de salida del avion</param>
 	/// <param name="_inclinacion">: Angulo de inclinacion del avion</param>
-	cBiplano(string _ID = "", short _largoAvion = 0, short _anchoAvion = 0, string _destino = "",
+	cBiplano(string _ID = "", float _largoAvion = 0, float _anchoAvion = 0, string _destino = "",
 		short _pasajerosActuales = 0, eEstado _estado = eEstado::desconocido, short _velocidad = 0, time_t _horaSalida = 0,
 		float _inclinacion = 0);
 	
@@ -63,9 +63,9 @@ public:
 
 protected:
 
-	float inclinacion;
 	static ushort velMaxDesBip; // Velocidad maxima de despegue en Biplano
 	static ushort velMaxAteBip; // Velocidad maxima de despegue en Biplano
+	float inclinacion;
 
 };
 

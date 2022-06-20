@@ -11,6 +11,9 @@ int main() {
 			- Juan Manuel Gonzalez Kapnik 
 	*/
 	
+	srand(time(RANDOM));
+	
+	
 	return 0;
 }
 

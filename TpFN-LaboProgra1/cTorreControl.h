@@ -26,33 +26,28 @@ public:
 	~cTorreControl();
 	
 	/// <summary>
-	/// Recibe el avion busca asignarlo a la pista
-	/// </summary>
-	/// <param name="avion">: avion que busca pista</param>
-	/// <returns>True en caso de poder, false en caso contrario</returns>
-	bool asignarPistaAvion(cAvion* avion);
-	
-	/// <summary>
 	/// Permite al avion despegar, sin antes hacer su checkeo interno y su relacion con la pista
 	/// </summary>
-	/// <param name="avion">: avion que intenta aterrizar</param>
-	/// <returns>True en caso de poder, false en caso contrario</returns>
-	bool autorizarDespegue(cAvion* avion);
+	/// <param name="_avion">: avion que intenta aterrizar</param>
+	void autorizarDespegue(cAvion* _avion);
 
 	/// <summary>
 	/// Permite al avion aterrizar, sin antes hacer su checkeo interno y su relacion con la pista
 	/// </summary>
-	/// <param name="avion">: avion que intenta aterrizar</param>
-	/// <returns></returns>
-	bool autorizarAterrizaje(cAvion* avion);
+	/// <param name="_avion">: Avion que intenta aterrizar</param>
+	void autorizarAterrizaje(cAvion* _avion);
+
+	void autorizarEstacionamiento(cAvion* _avion);
 
 	/// <summary>
 	/// Imprime los detalles de cada avion
 	/// </summary>
 	void imprimirDetalles();
 	
+	void verificarHorario(cAvion* _avion);
+
 	/// <summary>
-	/// Controla que el avion este en la lista
+	/// Controla que el avion este en la lista de la torre
 	/// </summary>
 	/// <param name="avion">: Avion que debe estar listado</param>
 	/// <returns>True en caso de no estar, false en caso contrario</returns>

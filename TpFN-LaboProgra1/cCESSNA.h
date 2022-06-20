@@ -24,14 +24,14 @@ public:
 	/// <param name="_alerones">: Alerones subidos (true) o bajos (false)</param>
 	cCESSNA(string _ID = "", float _largoAvion = 0, float _anchoAvion = 0, string _destino = "",
 		short _pasajerosActuales = 0, eEstado _estado = eEstado::desconocido, short _velocidad = 0, time_t _horaSalida = 0,
-		bool _controlAutomatico = false, short _cargaActual = 0, bool _alerones = false);
+		bool _controlAutomatico = false, float _cargaActual = 0, bool _alerones = false);
 	
 	/// <summary>
 	/// Destructor por defecto
 	/// </summary>	
 	~cCESSNA();
 
-	short getCargaActual() const;
+	float getCargaActual() const;
 
 	void setCargaActual(float _cargaActual);
 	
@@ -73,10 +73,10 @@ protected:
 	static ushort velMaxAteCes; // Velocidad Maxima de Aterrizaje en CESSNA
 	bool alerones;
 	bool controlAutomatico;
-	short cargaActual;
+	float cargaActual;
 };
 
-inline short cCESSNA::getCargaActual() const { return this->cargaActual; }
+inline float cCESSNA::getCargaActual() const { return this->cargaActual; }
 
 inline void cCESSNA::setCargaActual(float _cargaActual) { 
 	if(_cargaActual < 0)
