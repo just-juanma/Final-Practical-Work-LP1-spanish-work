@@ -9,6 +9,8 @@
 
 * Se evitaron los comentarios de cualquier get/set, y algunos metodos polimorficos (en las clases derivadas).
 
+* Para evitar confusiones entre relaciones, no se muestra el uso de friend class en el UML
+
 ---
 
 #### Referencias: 
