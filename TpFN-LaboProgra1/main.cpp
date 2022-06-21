@@ -25,6 +25,15 @@ int main() {
 	cin >> *biplano1;
 	cout << "Biplano generado." << endl;
 	
+	cout << "Generando el segundo biplano..." << endl;
+	cBiplano* biplano2 = new cBiplano("08", 6, 7);
+	cin >> *biplano2;
+	cout << "Biplano generado." << endl;
+
+	// generacion CESSNAS
+	cout << "Generando el primer CESSNA..." << endl;
+	cCESSNA* CESSNA1 = new cCESSNA("02", 4, 3);
+	cin >> *CESSNA1;
 	
 	return 0;
 }

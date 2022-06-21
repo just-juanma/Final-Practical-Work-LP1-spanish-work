@@ -30,6 +30,8 @@ public:
 	/// </summary>	
 	~cAvion();
 	
+	time_t getHoraSalida() const;
+
 	string getDestino() const;
 	
 	short getPasajerosActual() const;
@@ -122,6 +124,8 @@ protected:
 	time_t horaSalida; 
 	cModelo* modelo;
 };
+
+inline time_t cAvion::getHoraSalida() const { return horaSalida; }
 
 inline string cAvion::getDestino() const { return this->destino; }
 

@@ -46,11 +46,29 @@ void cCESSNA::estacionar() {
 }
 
 istream& operator>>(istream& is, cCESSNA& CESSNA) {
-	float cargaActualAux = 0;
-	cout << "Ingrese la carga actual: " << endl;
-	is >> cargaActualAux;
+	tm aux;
+	fflush(stdout);
+	cout << "Ingrese el destino del Biplano: " << endl;
+	is >> CESSNA.destino;
+	cout << "Ingrese la cantidad de pasajeros actuales: " << endl;
+	is >> CESSNA.pasajerosActual;
+	cout << "Ingrese la cantidad de carga actual (en kg): " << endl;
+	is >> CESSNA.cargaActual;
+	CESSNA.horaSalida = cFecha::getHorarioActual();
+	aux = *localtime(&CESSNA.horaSalida);
+	cout << "Ingrese la hora de salida: " << endl;
+	is >> aux.tm_hour;
+	cout << "Ingrese los minutos de salida: " << endl;
+	is >> aux.tm_min;
+	CESSNA.horaSalida = mktime(&aux);
 	try {
-		CESSNA.setCargaActual(cargaActualAux);
+		if (CESSNA < CESSNA.getCombustible()) {
+			CESSNA.estado = eEstado::aterrizando;
+			CESSNA.estacionar();
+		}
+		else {
+			throw invalid_argument("Error: la hora de partida no es valida");
+		}
 	}
 	catch (invalid_argument& e) {
 		cout << e.what() << endl;

@@ -39,17 +39,30 @@ bool cBiplano::operator>(cModelo* _modelo) {
 
 istream& operator>>(istream& is, cBiplano& biplano) {
 	tm aux;
+	fflush(stdout);
 	cout << "Ingrese el destino del Biplano: " << endl;
 	is >> biplano.destino;
-	fflush(stdout);
 	cout << "Ingrese la cantidad de pasajeros actuales: " << endl;
 	is >> biplano.pasajerosActual;
+	biplano.horaSalida = cFecha::getHorarioActual();
+	aux = *localtime(&biplano.horaSalida);
 	cout << "Ingrese la hora de salida: " << endl;
 	is >> aux.tm_hour;
 	cout << "Ingrese los minutos de salida: " << endl;
 	is >> aux.tm_min;
-	aux = *localtime(NULL);
 	biplano.horaSalida = mktime(&aux);
+	try {
+		if (biplano < biplano.getCombustible()) {	
+			biplano.estado = eEstado::aterrizando;
+			biplano.estacionar();
+		}
+		else {
+			throw invalid_argument("Error: la hora de partida no es valida");
+		}
+	}
+	catch (invalid_argument& e) {
+		cout << e.what() << endl;
+	}
 	return is;
 }
 

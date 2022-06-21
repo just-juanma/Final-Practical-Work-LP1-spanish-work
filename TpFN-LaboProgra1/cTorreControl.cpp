@@ -29,9 +29,6 @@ void cTorreControl::imprimirDetalles()
 		cout << *this->lista[0][i];
 }
 
-//void controlarModelo(cAvion* _avion) {
-//	if(dynamic_cast<)
-//}
 
 bool cTorreControl::operator!=(cAvion* avion)
 {
@@ -42,12 +39,15 @@ bool cTorreControl::operator!=(cAvion* avion)
 
 void cTorreControl::autorizarDespegue(cAvion* _avion) {
 	try {
-		if (this->pista->getLuO() &&				 // control que la pista este libre
-			!(*_avion > _avion->getModelo()) &&		 // control que no se exceda el limite de pasajeros, y de carga (dependiendo el tipo)
-			*this != _avion) {						 // control que el avion este registrado						
-			this->hangar->despachar(_avion);		 // se despacha el avion del hangar
-			_avion->despegar();						 // despegue del avion
-			this->pista->switchLuO();				 // cambia el estado de la pista
+		if (this->pista->getLuO() &&								 // control que la pista este libre
+			!(*_avion > _avion->getModelo()) &&						 // control que no se exceda el limite de pasajeros (y quizas carga)
+			*this != _avion &&										 // control que el avion este registrado	
+			*_avion < _avion->getCombustible() &&					 // control que el combustible alcance	
+			_avion->getHoraSalida() <= cFecha::getHorarioActual())   // control que el avion se encuentre en horario
+		{	 									 
+			this->hangar->despachar(_avion);						 // se despacha el avion del hangar
+			_avion->despegar();						                 // despegue del avion
+			this->pista->switchLuO();				                 // cambia el estado de la pista
 		}
 		else {
 			throw error_despegue();
@@ -60,14 +60,13 @@ void cTorreControl::autorizarDespegue(cAvion* _avion) {
 
 void cTorreControl::autorizarAterrizaje(cAvion* _avion) {
 	try {											
-		if (*this->pista == _avion &&				 // control que el avion pueda aterrizar en la pista
-			!(* _avion > _avion->getModelo()) &&	 // control que no se exceda el limite de pasajeros, y de carga (dependiendo el tipo)
-			_avion->getDestino() == "San Francisco") // control que el destino sea el de la torre
-		{    
-			
-			_avion->aterrizar();					 // aterrizaje del avion
-			*this->pista = _avion;				     // reserva el avion en la pista
-			*this->lista + _avion;					 // se agrega al registro de aviones a controlar
+		if (*this->pista == _avion &&							     // control que el avion pueda aterrizar en la pista
+			!(* _avion > _avion->getModelo()) &&	                 // control que no se exceda el limite de pasajeros (y quizas carga)
+			_avion->getDestino() == "San Francisco")                 // control que el destino sea el de la torre
+		{    		
+			_avion->aterrizar();					                 // aterrizaje del avion
+			*this->pista = _avion;				                     // reserva el avion en la pista
+			*this->lista + _avion;					                 // se agrega al registro de aviones a controlar
 		}
 		else
 			throw error_aterrizaje();
@@ -78,9 +77,9 @@ void cTorreControl::autorizarAterrizaje(cAvion* _avion) {
 }
 
 void cTorreControl::autorizarEstacionamiento(cAvion* _avion) {
-	_avion->estacionar();							// estacionamiento del avion
-	this->hangar->almacenar(_avion);				// almacenamiento del avion
-	this->pista->switchLuO();						// cambio de estado de la pista
+	_avion->estacionar();							                 // estacionamiento del avion
+	this->hangar->almacenar(_avion);				                 // almacenamiento del avion
+	this->pista->switchLuO();						                 // cambio de estado de la pista
 }													
 													
 void cTorreControl::verificarHorario(cAvion* _avion) {
