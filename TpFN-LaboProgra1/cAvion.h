@@ -5,7 +5,6 @@
 #include "cModelo.h"
 #include "cException.h"
 
-
 class cAvion
 {
 public:
@@ -30,6 +29,8 @@ public:
 	/// Destructor por defecto
 	/// </summary>	
 	~cAvion();
+	
+	string getDestino() const;
 	
 	short getPasajerosActual() const;
 	
@@ -121,6 +122,8 @@ protected:
 	time_t horaSalida; 
 	cModelo* modelo;
 };
+
+inline string cAvion::getDestino() const { return this->destino; }
 
 inline short cAvion::getVelocidad() const { return this->velocidad; }
 

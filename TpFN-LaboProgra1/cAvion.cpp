@@ -14,10 +14,17 @@ cAvion::cAvion(string _ID, float _largoAvion, float _anchoAvion, short _helice, 
 	this->pasajerosActual = _pasajerosActual;
 	this->horaSalida = _horaSalida;
 	try {
-		if (this->ID == "01")      this->modelo = new cModelo("CESSNA C-210N CENTURION", float(200.6), 1, 10, 2, 10);
-		else if (this->ID == "02") this->modelo = new cModelo("CESSNA C10T CC-PON", float(182.1), float(1.3), 9, 3, 21);
-		else if (this->ID == "03") this->modelo = new cModelo("Cessna P210N Particular", float(170.3), float(1.2), 11, 0, 50);
-		// Bato: seguir con 7 ID mas, tienen que haber modelos para 10 aviones (5 CESSNA y 5 Biplanos)
+		if (this->ID == "01")      this->modelo = new cModelo("CESSNA C-210N CENTURION", float(200.6), 20, 10, 2, 10);
+		else if (this->ID == "02") this->modelo = new cModelo("CESSNA C10T CC-PON", float(182.1), float(35.4), 9, 3, 21);
+		else if (this->ID == "03") this->modelo = new cModelo("CESSNA P210N PARTICULAR", float(145), 50, 11, 0, 50);
+		else if (this->ID == "04") this->modelo = new cModelo("CESSNA BULL-530 ", float(350.7), float(32.5), 12, 6, 15);
+		else if (this->ID == "05") this->modelo = new cModelo("CESSNA A12 TCH", float(220.5), 15, 4, 1, 30);
+
+		else if (this->ID == "06") this->modelo = new cModelo("BIPLANO 20-909", float(0), 40, 2, 0, 30);
+		else if (this->ID == "07") this->modelo = new cModelo("BIPLANO 20-810", float(0), float(45.3), 1, 1, 15);
+		else if (this->ID == "08") this->modelo = new cModelo("BIPLANO T-80", float(0), 22, 3, 1, 0);
+		else if (this->ID == "09") this->modelo = new cModelo("BIPLANO T-30", float(0), float(18.1), 2, 0, 45);
+		else if (this->ID == "10") this->modelo = new cModelo("BIPLANO Q100", float(0), 60, 5, 2, 10);
 		else throw null_modelo();
 	}
 	catch (bad_alloc& e) {

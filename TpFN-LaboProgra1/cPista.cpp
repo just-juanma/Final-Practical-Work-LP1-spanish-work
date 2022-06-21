@@ -20,5 +20,5 @@ bool cPista::operator==(cAvion* avion) {
 
 float cPista::getPosicionFinal(cAvion* avion) { 
 	float tiempo = this->getTiempoIdeal(avion);
-	return (avion->getVelocidad() * tiempo - 0.5 * avion->getAceleracion() * tiempo * tiempo);
+	return (conversor(avion) * tiempo - 0.5 * avion->getAceleracion() * tiempo * tiempo);
 }

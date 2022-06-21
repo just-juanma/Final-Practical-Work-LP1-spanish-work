@@ -38,8 +38,18 @@ bool cBiplano::operator>(cModelo* _modelo) {
 }
 
 istream& operator>>(istream& is, cBiplano& biplano) {
-	cout << "Ingrese la inclinacion del Biplano: " << endl;
-	is >> biplano.inclinacion;
+	tm aux;
+	cout << "Ingrese el destino del Biplano: " << endl;
+	is >> biplano.destino;
+	fflush(stdout);
+	cout << "Ingrese la cantidad de pasajeros actuales: " << endl;
+	is >> biplano.pasajerosActual;
+	cout << "Ingrese la hora de salida: " << endl;
+	is >> aux.tm_hour;
+	cout << "Ingrese los minutos de salida: " << endl;
+	is >> aux.tm_min;
+	aux = *localtime(NULL);
+	biplano.horaSalida = mktime(&aux);
 	return is;
 }
 

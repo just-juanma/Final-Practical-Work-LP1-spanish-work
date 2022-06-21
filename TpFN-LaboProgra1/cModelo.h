@@ -33,7 +33,7 @@ public:
 	float getAceleracion() const;
 	
 private:
-	
+
 	const string nombre;
 	float limiteCarga;
 	float aceleracion;
