@@ -80,5 +80,12 @@ public:
 	}
 };
 
+class error_id_incorrecto :public exception {
+public:
+	const char* what()const throw() {
+		return "Error: el ID no pertenece al modelo de avion esperado";
+	}
+};
+
 
 #endif // !CEXCEPTION_H
