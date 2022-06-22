@@ -35,7 +35,10 @@ int main() {
 	cout << "Generando el primer CESSNA..." << endl;
 	cCESSNA* CESSNA1 = new cCESSNA("02", 4, 3);
 	cin >> *CESSNA1;
+	cout << "CESSNA generado";
 	
+
+
 	return 0;
 }
 

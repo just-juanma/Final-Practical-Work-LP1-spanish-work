@@ -16,7 +16,7 @@ cCESSNA::cCESSNA(string _ID, float _largoAvion, float _anchoAvion, string _desti
 cCESSNA::~cCESSNA() { }
 	
 bool cCESSNA::operator>(cModelo* _modelo) {
-	if (this->pasajerosActual > _modelo->getLimitePasajeros() || 
+	if ((this->pasajerosActual > _modelo->getLimitePasajeros() || this->pasajerosActual < 0) ||
 		this->cargaActual > _modelo->getLimiteCarga())
 		return true;
 	return false;
