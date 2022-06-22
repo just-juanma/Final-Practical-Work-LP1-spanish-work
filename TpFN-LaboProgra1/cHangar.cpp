@@ -38,3 +38,8 @@ void cHangar::despachar(cAvion* _avion) {
 		cout << e.what();
 	}
 }
+
+cAvion* cHangar::operator[](short pos_)
+{
+	return (this->almacenados[0][pos_]);
+}

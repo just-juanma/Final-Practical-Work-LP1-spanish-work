@@ -26,7 +26,7 @@ void cTorreControl::imprimirDetalles()
 	cout << "-----------------------------" << endl 
 		 << "Aviones en el hangar: " << endl;
 	for (ushort i = 0; i < this->hangar->getCantActual(); i++)
-		cout << *this->lista[0][i];
+		cout << *this->hangar[0][i];
 }
 
 
@@ -46,8 +46,9 @@ void cTorreControl::autorizarDespegue(cAvion* _avion) {
 			_avion->getHoraSalida() <= cFecha::getHorarioActual())   // control que el avion se encuentre en horario
 		{	 									 
 			this->hangar->despachar(_avion);						 // se despacha el avion del hangar
-			_avion->despegar();						                 // despegue del avion
 			this->pista->switchLuO();				                 // cambia el estado de la pista
+			_avion->despegar();						                 // despegue del avion
+			this->pista->switchLuO();								 // cambia el estado de la pista
 		}
 		else {
 			throw error_despegue();
@@ -65,8 +66,11 @@ void cTorreControl::autorizarAterrizaje(cAvion* _avion) {
 			_avion->getDestino() == "San Francisco")                 // control que el destino sea el de la torre
 		{    		
 			_avion->aterrizar();					                 // aterrizaje del avion
+			this->pista->switchLuO();								 //el avion ocupa la pista a la hora de aterriza
 			*this->pista = _avion;				                     // reserva el avion en la pista
 			*this->lista + _avion;					                 // se agrega al registro de aviones a controlar
+			autorizarEstacionamiento(_avion);						 // luego de aterrizar por protocolos de seguridad se decide mandar al hangar el avion, 
+																	 // pero luego puede partir a la hora que desee
 		}
 		else
 			throw error_aterrizaje();
