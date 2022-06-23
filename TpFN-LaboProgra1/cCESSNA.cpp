@@ -51,7 +51,16 @@ istream& operator>>(istream& is, cCESSNA& CESSNA) {
 	is >> CESSNA.destino;
 	CESSNA.inputCleaning();
 	cout << "Ingrese la cantidad de pasajeros actuales: " << endl;
-	is >> CESSNA.pasajerosActual;
+	try {
+		int aux; is >> aux;
+		if (int(aux)!=aux && !isalpha(aux))
+			CESSNA.pasajerosActual = aux;
+		else throw error_input();
+		}
+			catch (error_input& e)
+			{
+				cout << e.what();
+			}
 	cout << "Ingrese la cantidad de carga actual (en kg): " << endl;
 	is >> CESSNA.cargaActual;
 	CESSNA.horaSalida = cFecha::getHorarioActual();

@@ -87,5 +87,12 @@ public:
 	}
 };
 
+class error_input :public exception {
+public:
+	const char* what()const throw() {
+		return "Error: El valor ingresado no se corresponde con el tipo de dato esperado";
+	}
+};
+
 
 #endif // !CEXCEPTION_H

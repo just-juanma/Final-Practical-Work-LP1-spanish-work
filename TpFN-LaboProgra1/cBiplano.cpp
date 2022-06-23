@@ -43,7 +43,16 @@ istream& operator>>(istream& is, cBiplano& biplano) {
 	is >> biplano.destino;
 	biplano.inputCleaning();
 	cout << "Ingrese la cantidad de pasajeros actuales: " << endl;
-	is >> biplano.pasajerosActual;
+	try {
+		int aux; is >> aux;
+		if (isdigit(aux))
+			biplano.pasajerosActual = aux;
+		else throw error_input();
+	}
+	catch (error_input& e)
+	{
+		cout << e.what();
+	}
 	biplano.horaSalida = cFecha::getHorarioActual();
 	aux = *localtime(&biplano.horaSalida);
 	cout << "Ingrese la hora de salida: " << endl;
