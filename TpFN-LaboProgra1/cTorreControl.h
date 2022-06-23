@@ -47,6 +47,12 @@ public:
 	void verificarHorario(cAvion* _avion);
 
 	/// <summary>
+	/// Debido a que para despegar el avion tiene que estar en la lista, se utiliza este metodo para 
+	/// agregarlo previamente
+	/// </summary>
+	/// <param name="_avion">Avion a agregar</param>
+	void AgregarAvionesListados(cAvion* _avion);
+	/// <summary>
 	/// Controla que el avion este en la lista de la torre
 	/// </summary>
 	/// <param name="avion">: Avion que debe estar listado</param>

@@ -32,7 +32,7 @@ void cBiplano::estacionar() {
 }
 
 bool cBiplano::operator>(cModelo* _modelo) {
-	if (_modelo->getLimitePasajeros()> this->pasajerosActual)
+	if (_modelo->getLimitePasajeros() < this->pasajerosActual)
 		return true;
 	return false;
 }
@@ -40,8 +40,7 @@ bool cBiplano::operator>(cModelo* _modelo) {
 istream& operator>>(istream& is, cBiplano& biplano) {
 	tm aux;
 	cout << "Ingrese el destino del Biplano: " << endl;
-	is >> biplano.destino;
-	biplano.inputCleaning();
+	getline(is, biplano.destino);
 	cout << "Ingrese la cantidad de pasajeros actuales: " << endl;
 	try {
 		int aux; is >> aux;
@@ -60,6 +59,7 @@ istream& operator>>(istream& is, cBiplano& biplano) {
 	cout << "Ingrese los minutos de salida: " << endl;
 	is >> aux.tm_min;
 	biplano.horaSalida = mktime(&aux);
+	biplano.inputCleaning();
 	try {
 		if (biplano < biplano.getCombustible()) {	
 			biplano.estado = eEstado::aterrizando;

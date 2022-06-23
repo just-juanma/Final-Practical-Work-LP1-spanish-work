@@ -18,7 +18,7 @@ int main() {
 
 	// generacion torre de control
 	cout << "Generando torre de control..." << endl;
-	cTorreControl* torreControl = new cTorreControl(5, 5, 50, 50);
+	cTorreControl* torreControl = new cTorreControl(5, 5, 300, 300);
 	cout << "Torre de control generada." << endl;
 
 	// generacion biplanos
@@ -27,10 +27,10 @@ int main() {
 	cin >> *biplano1;
 	cout << "Biplano generado." << endl;
 
-	//cout << "Generando el segundo biplano para aterrizaje..." << endl;
-	//cBiplano* biplano2 = new cBiplano("08", 6, 7);
-	//cin >> *biplano2;
-	//cout << "Biplano generado." << endl;
+	cout << "Generando el segundo biplano para aterrizaje..." << endl;
+	cBiplano* biplano2 = new cBiplano("08", 6, 7);
+	cin >> *biplano2;
+	cout << "Biplano generado." << endl;
 
 	//// generacion CESSNAS
 	//cout << "Generando el primer CESSNA para despegue..." << endl;
@@ -44,13 +44,13 @@ int main() {
 	//cout << "CESSNA generado";
 
 	// despegue 
-	biplano1->setVelocidad(biplano1->getVelAte());
-	torreControl->autorizarAterrizaje(biplano1);
-	torreControl->autorizarDespegue(biplano1);
+	biplano1->setVelocidad(biplano1->getVelAte());	// incremento la velocidad manualmente para que se calcule si el avion puede aterrizar
+	torreControl->AgregarAvionesListados(biplano1);	// lo agrego a la lista de la torre y el hangar para que se pueda registrar y despachar
+	torreControl->autorizarDespegue(biplano1);		// 
 	//torreControl->autorizarDespegue(CESSNA1);
 
-	//// aterrizaje
-	//torreControl->autorizarAterrizaje(biplano2);
+	// aterrizaje
+	torreControl->autorizarAterrizaje(biplano2);
 	//torreControl->autorizarAterrizaje(CESSNA1);
 
 	//// estacionamiento 

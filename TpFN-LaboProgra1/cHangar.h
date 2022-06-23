@@ -31,8 +31,7 @@ public:
 	/// <summary>
 	/// Se saca el avion de la lista
 	/// </summary>
-	/// <param name="pos">Posicion en el hangar que se desea devolver</param>
-	void despachar(cAvion* _avion);
+	cAvion* despachar(cAvion* _avion);
 	
 	cAvion* operator[](short _pos);
 private: 

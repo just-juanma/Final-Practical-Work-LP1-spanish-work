@@ -49,7 +49,6 @@ istream& operator>>(istream& is, cCESSNA& CESSNA) {
 	tm aux;
 	cout << "Ingrese el destino del CESSNA: " << endl;
 	is >> CESSNA.destino;
-	CESSNA.inputCleaning();
 	cout << "Ingrese la cantidad de pasajeros actuales: " << endl;
 	try {
 		int aux; is >> aux;
@@ -69,6 +68,7 @@ istream& operator>>(istream& is, cCESSNA& CESSNA) {
 	is >> aux.tm_hour;
 	cout << "Ingrese los minutos de salida: " << endl;
 	is >> aux.tm_min;
+	CESSNA.inputCleaning();
 	CESSNA.horaSalida = mktime(&aux);
 	try {
 		if (CESSNA < CESSNA.getCombustible()) {

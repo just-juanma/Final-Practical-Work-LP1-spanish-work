@@ -56,6 +56,7 @@ public:
 	/// </summary>
 	void operator++();
 	
+	T* quitar(T* elemento);
 	
 protected:
 	
@@ -103,6 +104,19 @@ inline cLista<T>::~cLista() {
 		for (ushort i = 0; i < this->cantActual; i++)
 			delete this->lista[i];
 	delete[] this->lista;
+}
+
+template <typename T>
+inline T* cLista<T>::quitar(T* elemento) {
+	for (ushort i = 0; i < this->cantActual; i++)
+		if (lista[i] && this->lista[i] == elemento) {
+			T* aux = this->lista[i];
+			this->lista[i] = NULL;
+			ordenar();
+			this->cantActual--;
+			return aux;
+		}
+	throw exception("No se pudo quitar el elemento ingresado");
 }
 
 template <typename T>
