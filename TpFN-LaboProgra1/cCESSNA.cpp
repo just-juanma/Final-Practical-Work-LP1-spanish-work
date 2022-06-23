@@ -47,9 +47,9 @@ void cCESSNA::estacionar() {
 
 istream& operator>>(istream& is, cCESSNA& CESSNA) {
 	tm aux;
-	fflush(stdout);
-	cout << "Ingrese el destino del Biplano: " << endl;
+	cout << "Ingrese el destino del CESSNA: " << endl;
 	is >> CESSNA.destino;
+	CESSNA.inputCleaning();
 	cout << "Ingrese la cantidad de pasajeros actuales: " << endl;
 	is >> CESSNA.pasajerosActual;
 	cout << "Ingrese la cantidad de carga actual (en kg): " << endl;

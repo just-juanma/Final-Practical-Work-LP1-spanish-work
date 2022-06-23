@@ -32,16 +32,16 @@ void cBiplano::estacionar() {
 }
 
 bool cBiplano::operator>(cModelo* _modelo) {
-	if (this->pasajerosActual > _modelo->getLimitePasajeros())
+	if (_modelo->getLimitePasajeros()> this->pasajerosActual)
 		return true;
 	return false;
 }
 
 istream& operator>>(istream& is, cBiplano& biplano) {
 	tm aux;
-	fflush(stdout);
 	cout << "Ingrese el destino del Biplano: " << endl;
 	is >> biplano.destino;
+	biplano.inputCleaning();
 	cout << "Ingrese la cantidad de pasajeros actuales: " << endl;
 	is >> biplano.pasajerosActual;
 	biplano.horaSalida = cFecha::getHorarioActual();

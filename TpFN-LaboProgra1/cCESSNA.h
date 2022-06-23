@@ -25,11 +25,15 @@ public:
 	cCESSNA(string _ID = "", float _largoAvion = 0, float _anchoAvion = 0, string _destino = "",
 		short _pasajerosActuales = 0, eEstado _estado = eEstado::desconocido, short _velocidad = 0, time_t _horaSalida = 0,
 		bool _controlAutomatico = false, float _cargaActual = 0, bool _alerones = false);
-	
+
 	/// <summary>
 	/// Destructor por defecto
 	/// </summary>	
 	~cCESSNA();
+
+	static float getVelDes();
+
+	static float getVelAte();
 
 	float getCargaActual() const;
 
@@ -75,6 +79,10 @@ protected:
 	bool controlAutomatico;
 	float cargaActual;
 };
+
+inline float cCESSNA::getVelDes() { return cCESSNA::velMaxDesCes; }
+
+inline float cCESSNA::getVelAte() { return cCESSNA::velMaxAteCes; }
 
 inline float cCESSNA::getCargaActual() const { return this->cargaActual; }
 

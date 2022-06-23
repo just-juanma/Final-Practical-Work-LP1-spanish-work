@@ -40,10 +40,9 @@ bool cTorreControl::operator!=(cAvion* avion)
 void cTorreControl::autorizarDespegue(cAvion* _avion) {
 	try {
 		if (this->pista->getLuO() &&								 // control que la pista este libre
-			!(*_avion > _avion->getModelo()) &&						 // control que no se exceda el limite de pasajeros (y quizas carga)
-			*this != _avion &&										 // control que el avion este registrado	
-			*_avion < _avion->getCombustible() &&					 // control que el combustible alcance	
-			_avion->getHoraSalida() <= cFecha::getHorarioActual())   // control que el avion se encuentre en horario
+			*_avion > _avion->getModelo() &&						 // control que no se exceda el limite de pasajeros (y quizas carga)
+			!(*this != _avion) &&								     // control que el avion este registrado	
+			*_avion < _avion->getCombustible())						 // control que el combustible alcance	
 		{	 									 
 			this->hangar->despachar(_avion);						 // se despacha el avion del hangar
 			this->pista->switchLuO();				                 // cambia el estado de la pista

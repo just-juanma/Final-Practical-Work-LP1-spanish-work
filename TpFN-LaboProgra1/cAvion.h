@@ -84,6 +84,8 @@ public:
 	
 	string enumToString(eEstado _estado) const;
 
+	void inputCleaning();
+
 	/// <summary>
 	/// Controla que un avion no este excedido de su capacidad de pasajeros
 	/// En caso de CESSNA, verifica tambien que el peso no se exceda
@@ -124,6 +126,11 @@ protected:
 	time_t horaSalida; 
 	cModelo* modelo;
 };
+
+inline void cAvion::inputCleaning() {
+	int ch;
+	while ((ch = getchar()) != '\n' && ch != EOF);
+}
 
 inline time_t cAvion::getHoraSalida() const { return horaSalida; }
 

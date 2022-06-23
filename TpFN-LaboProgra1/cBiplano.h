@@ -4,7 +4,7 @@
 #include "cAvion.h"
 #include "eEstado.h"
 
-class cBiplano : public cAvion 
+class cBiplano : public cAvion
 {
 public:
 
@@ -23,7 +23,7 @@ public:
 	cBiplano(string _ID = "", float _largoAvion = 0, float _anchoAvion = 0, string _destino = "",
 		short _pasajerosActuales = 0, eEstado _estado = eEstado::desconocido, short _velocidad = 0, time_t _horaSalida = 0,
 		float _inclinacion = 0);
-	
+
 	/// <summary>
 	/// Destructor por defecto
 	/// </summary>	
@@ -45,8 +45,12 @@ public:
 	void estacionar();
 
 	string to_string() const;
-	
+
 	bool operator>(cModelo* _modelo);
+
+	static float getVelDes();
+	
+	static float getVelAte();
 
 	/// <summary>
 	/// Permite generar la salida de los datos del avion
@@ -68,6 +72,10 @@ protected:
 	float inclinacion;
 
 };
+
+inline float cBiplano::getVelDes() { return cBiplano::velMaxDesBip; }
+
+inline float cBiplano::getVelAte() { return cBiplano::velMaxAteBip; }
 
 inline ostream& operator<<(ostream& os, const cBiplano& biplano) {	return os << biplano.to_string(); }
 
