@@ -28,11 +28,12 @@ bool cHangar::almacenar(cAvion* _avion)
 	return false;
 }
 
-void cHangar::despachar(cAvion* _avion) { 
+cAvion* cHangar::despachar(cAvion* _avion) { 
 	try {
 		if(!_avion)
 			throw error_null_avion();
-		*this->almacenados - _avion;
+		cAvion* avion = this->almacenados->quitar(_avion);
+		return avion;
 	}
 	catch (error_null_avion& e) {
 		cout << e.what();

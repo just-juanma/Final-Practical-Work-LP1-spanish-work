@@ -10,15 +10,15 @@ cPista::~cPista() { };
 
 bool cPista::operator==(cAvion* avion) {
 	
-	if (this->largo <= avion->getLargoAvion() && 
-		this->ancho <= avion->getAnchoAvion() &&
+	if (avion->getLargoAvion()<= this->largo &&
+		avion->getAnchoAvion()<= this->ancho &&
 		this->getLuO() &&
-		getPosicionFinal(avion) < this->largo)
+		(getPosicionFinal(avion) < this->largo))
 		return true;
 	return false;
 }
 
 float cPista::getPosicionFinal(cAvion* avion) { 
 	float tiempo = this->getTiempoIdeal(avion);
-	return (conversor(avion) * tiempo - 0.5 * avion->getAceleracion() * tiempo * tiempo);
+	return ( this->conversor(avion)*tiempo - 0.5 * avion->getAceleracion() * tiempo * tiempo);
 }
