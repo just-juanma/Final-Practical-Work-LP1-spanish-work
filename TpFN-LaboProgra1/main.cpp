@@ -33,36 +33,35 @@ int main() {
 	cout << "Biplano generado." << endl;
 
 	//// generacion CESSNAS
-	//cout << "Generando el primer CESSNA para despegue..." << endl;
-	//cCESSNA* CESSNA1 = new cCESSNA("02", 4, 3);
-	//cin >> *CESSNA1;
-	//cout << "CESSNA generado";
+	cout << "Generando el primer CESSNA para despegue..." << endl;
+	cCESSNA* CESSNA1 = new cCESSNA("02", 4, 3);
+	cin >> *CESSNA1;
+	cout << "CESSNA generado";
 
-	//cout << "Generando el primer CESSNA para aterrizaje..." << endl;
-	//cCESSNA* CESSNA2 = new cCESSNA("04", 4, 3);
-	//cin >> *CESSNA1;
-	//cout << "CESSNA generado";
+	cout << "Generando el primer CESSNA para aterrizaje..." << endl;
+	cCESSNA* CESSNA2 = new cCESSNA("04", 4, 3);
+	cin >> *CESSNA1;
+	cout << "CESSNA generado";
 
 	// despegue 
-	biplano1->setVelocidad(biplano1->getVelAte());	// incremento la velocidad manualmente para que se calcule si el avion puede aterrizar
 	torreControl->AgregarAvionesListados(biplano1);	// lo agrego a la lista de la torre y el hangar para que se pueda registrar y despachar
 	torreControl->autorizarDespegue(biplano1);		// 
-	//torreControl->autorizarDespegue(CESSNA1);
+	torreControl->AgregarAvionesListados(CESSNA1);
+	torreControl->autorizarDespegue(CESSNA1);
 
 	// aterrizaje
 	torreControl->autorizarAterrizaje(biplano2);
-	//torreControl->autorizarAterrizaje(CESSNA1);
+	torreControl->autorizarAterrizaje(CESSNA2);
 
-	//// estacionamiento 
-	//torreControl->autorizarEstacionamiento(biplano2);
-	//torreControl->autorizarEstacionamiento(CESSNA2);
+	// verificar horario de aviones despegados
+	torreControl->verificarHorario(biplano1);
+	torreControl->verificarHorario(CESSNA1);
 
-	//// verificar horario de aviones despegados
-	//torreControl->verificarHorario(biplano1);
-	//torreControl->verificarHorario(CESSNA1);
+	// imprimir detalles
+	torreControl->imprimirDetalles();
 
-	//// imprimir detalles
-	//torreControl->imprimirDetalles();
+	//deletes aca abajo
+
 
 	return 0;
 }

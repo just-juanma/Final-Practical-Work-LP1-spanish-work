@@ -55,7 +55,7 @@ public:
 class error_null_avion :public exception {
 public: 
 	const char* what()const throw() {
-		return "Error: El avion no existe";
+		return "Error: El avion no existe\n";
 	}
 };
 
@@ -69,28 +69,28 @@ public:
 class error_avion_almacenado :public exception {
 public:
 	const char* what()const throw() {
-		return "Error: El avion no pudo ser almacenado";
+		return "Error: El avion no pudo ser almacenado\n";
 	}
 };
 
 class error_pista_ocupada :public exception {
 public:
 	const char* what()const throw() {
-		return "Error: no se puede usar la pista, esta misma esta ocupada";
+		return "Error: no se puede usar la pista, esta misma esta ocupada\n";
 	}
 };
 
 class error_id_incorrecto :public exception {
 public:
 	const char* what()const throw() {
-		return "Error: el ID no pertenece al modelo de avion esperado";
+		return "Error: el ID no pertenece al modelo de avion esperado\n";
 	}
 };
 
 class error_input :public exception {
 public:
 	const char* what()const throw() {
-		return "Error: El valor ingresado no se corresponde con el tipo de dato esperado";
+		return "Error: El valor ingresado no se corresponde con el dato esperado\n";
 	}
 };
 
