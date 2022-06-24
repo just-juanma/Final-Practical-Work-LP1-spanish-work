@@ -52,7 +52,7 @@ istream& operator>>(istream& is, cCESSNA& CESSNA) {
 	cout << "Ingrese la cantidad de pasajeros actuales: " << endl;
 	try {
 		int aux; is >> aux;
-		if (isalpha(aux))
+		if (!isalpha(aux))
 			CESSNA.pasajerosActual = aux;
 		else throw error_input();
 		}

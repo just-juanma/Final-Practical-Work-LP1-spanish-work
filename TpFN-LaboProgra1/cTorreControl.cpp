@@ -20,7 +20,7 @@ cTorreControl::~cTorreControl() {
 void cTorreControl::imprimirDetalles()
 {
 	cout << "-----------------------------" << endl
-		 << "Aviones fuera del hangar: " << endl;
+		 << "Lista Completa de Aviones Registrados: " << endl;
 	for (ushort i = 0; i < this->lista->cantActual; i++)
 		cout << *this->lista[0][i];
 	cout << "-----------------------------" << endl 

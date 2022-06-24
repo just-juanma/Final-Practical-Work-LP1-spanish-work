@@ -2,7 +2,7 @@
 #include "cBiplano.h"
 #include "cCESSNA.h"
 
-void VerificarID(cModelo* avion);
+void verificarID(cAvion* avion);
 
 int main() {
 
@@ -23,7 +23,7 @@ int main() {
 
 	// generacion biplanos
 	cout << "Generando el primer biplano para despegue..." << endl;
-	cBiplano* biplano1 = new cBiplano("05", 5, 5);
+	cBiplano* biplano1 = new cBiplano("06", 5, 5);
 	verificarID(biplano1);
 	cin >> *biplano1;
 	cout << "Biplano generado." << endl;
@@ -46,9 +46,9 @@ int main() {
 	cout << "CESSNA generado";
 
 	// despegue 
-	torreControl->AgregarAvionesListados(biplano1);	// lo agrego a la lista de la torre y el hangar para que se pueda registrar y despachar
+	torreControl->agregarAvionesListados(biplano1);	// lo agrego a la lista de la torre y el hangar para que se pueda registrar y despachar
 	torreControl->autorizarDespegue(biplano1);		// 
-	torreControl->AgregarAvionesListados(CESSNA1);
+	torreControl->agregarAvionesListados(CESSNA1);
 	torreControl->autorizarDespegue(CESSNA1);
 
 	// aterrizaje
@@ -73,16 +73,16 @@ void verificarID(cAvion* avion)
 	try {
 		if (stoi(avion->getID()) < 6 && stoi(avion->getID()) > 0)
 		{
-			cAvion* AvionAux = dynamic_cast<cCESSNA*>(avion);
+			cCESSNA* AvionAux = dynamic_cast<cCESSNA*>(avion);
 			if (AvionAux == NULL) throw error_id_incorrecto();
 		}
 		else if (stoi(avion->getID()) > 5 && stoi(avion->getID()) < 11)
 		{
-			cAvion* AvionAux = dynamic_cast<cBiplano*>(avion);
+			cBiplano* AvionAux = dynamic_cast<cBiplano*>(avion);
 			if (AvionAux == NULL) throw error_id_incorrecto();
 		}
 	}
-	catch (null_modelo& e) {
+	catch (error_id_incorrecto& e) {
 		cout << e.what();
 	}
 }
