@@ -64,6 +64,7 @@ istream& operator>>(istream& is, cCESSNA& CESSNA) {
 	is >> CESSNA.cargaActual;
 	CESSNA.horaSalida = cFecha::getHorarioActual();
 	aux = *localtime(&CESSNA.horaSalida);
+	cout << "- Ingrese hora y minuto de salida (Del dia de la fecha) -" << endl;
 	cout << "Ingrese la hora de salida: " << endl;
 	is >> aux.tm_hour;
 	cout << "Ingrese los minutos de salida: " << endl;
