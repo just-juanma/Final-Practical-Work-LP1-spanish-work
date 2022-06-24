@@ -57,8 +57,7 @@ istream& operator>>(istream& is, cCESSNA& CESSNA) {
 			throw error_input();
 		}
 	}
-	catch (error_input& e)
-	{
+	catch (error_input& e) {
 		cout << e.what();
 	}
 	cout << "Ingrese la cantidad de carga actual (en kg): " << endl;

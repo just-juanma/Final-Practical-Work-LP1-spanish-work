@@ -43,17 +43,16 @@ istream& operator>>(istream& is, cBiplano& biplano) {
 	getline(is, biplano.destino);
 	cout << "Ingrese la cantidad de pasajeros actuales: " << endl;
 	try {
-		int aux; 
-		is >> aux;
-		if (!isalpha(aux)) {
-			biplano.pasajerosActual = aux;
-		}
-		else throw error_input();
+		is >> biplano.pasajerosActual;
+			if (isalpha(biplano.pasajerosActual)) {
+				biplano.pasajerosActual = 0;
+				throw error_input();
+			}
 	}
-	catch (error_input& e)
-	{
+	catch (error_input& e) {
 		cout << e.what();
 	}
+
 	biplano.horaSalida = cFecha::getHorarioActual();
 	aux = *localtime(&biplano.horaSalida);
 	cout << "- Ingrese hora y minuto de salida (Del dia de la fecha) -" << endl;
@@ -64,11 +63,7 @@ istream& operator>>(istream& is, cBiplano& biplano) {
 	biplano.horaSalida = mktime(&aux);
 	biplano.inputCleaning();
 	try {
-		if (biplano < biplano.getCombustible()) {	
-			biplano.estado = eEstado::aterrizando;
-			biplano.estacionar();
-		}
-		else {
+		if (!(biplano < biplano.getCombustible())) {	
 			throw invalid_argument("Error: la hora de partida no es valida");
 		}
 	}
@@ -87,11 +82,11 @@ string cBiplano::to_string() const {
 		<< "Cantidad de helices: " << this->helice << endl
 		<< "Estado: " << enumToString(this->estado) << endl;	
 		if (this->estado == eEstado::enVuelo) {
-	ss		<< "Destino: " << this->destino << endl
-			<< "Hora de salida: " << ctime(&this->horaSalida) << endl
-			<< "Velocidad actual: " << this->velocidad << endl
-			<< "Cantidad actual de pasajeros: " << this->pasajerosActual << endl
-			<< "Inclinacion actual del avion: " << this->inclinacion << endl;			
+			ss << "Destino: " << this->destino << endl;
+			ss << "Hora de salida: " << ctime(&this->horaSalida) << endl;
+			ss << "Velocidad actual: " << this->velocidad << endl;
+			ss << "Cantidad actual de pasajeros: " << this->pasajerosActual << endl;
+			ss << "Inclinacion actual del avion: " << this->inclinacion << endl;
 		}
 		
 	return ss.str();
