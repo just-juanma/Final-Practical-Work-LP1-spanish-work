@@ -33,13 +33,14 @@ void cCESSNA::despegar() {
 void cCESSNA::aterrizar() {
 	setEstado(aterrizando);
 	this->velocidad = velMaxAteCes;
+	this->alerones = true;
 }
 
 void cCESSNA::estacionar() {
 	setEstado(estacionado);
 	this->horaSalida = 0;
 	this->velocidad = 0;
-	this->alerones = true;
+	this->alerones = false;
 	this->controlAutomatico = false;
 	this->pasajerosActual = 0;
 	this->cargaActual = 0;
