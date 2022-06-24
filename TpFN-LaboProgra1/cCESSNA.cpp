@@ -48,11 +48,11 @@ void cCESSNA::estacionar() {
 istream& operator>>(istream& is, cCESSNA& CESSNA) {
 	tm aux;
 	cout << "Ingrese el destino del CESSNA: " << endl;
-	is >> CESSNA.destino;
+	getline(is, CESSNA.destino);
 	cout << "Ingrese la cantidad de pasajeros actuales: " << endl;
 	try {
 		int aux; is >> aux;
-		if (int(aux)!=aux && !isalpha(aux))
+		if (isalpha(aux))
 			CESSNA.pasajerosActual = aux;
 		else throw error_input();
 		}

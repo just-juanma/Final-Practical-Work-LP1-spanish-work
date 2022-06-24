@@ -46,24 +46,24 @@ int main() {
 	cout << "CESSNA generado";
 
 	// despegue 
-	torreControl->agregarAvionesListados(biplano1);	// lo agrego a la lista de la torre y el hangar para que se pueda registrar y despachar
-	torreControl->autorizarDespegue(biplano1);		// deberia despegar
+	torreControl->AgregarAvionesListados(biplano1);	// lo agrego a la lista de la torre y el hangar para que se pueda registrar y despachar
+	torreControl->autorizarDespegue(biplano1);		// 
+	torreControl->AgregarAvionesListados(CESSNA1);
 	torreControl->autorizarDespegue(CESSNA1);
 
 	// aterrizaje
 	torreControl->autorizarAterrizaje(biplano2);
-	//torreControl->autorizarAterrizaje(CESSNA1);
+	torreControl->autorizarAterrizaje(CESSNA2);
 
-	//// estacionamiento 
-	//torreControl->autorizarEstacionamiento(biplano2);
-	//torreControl->autorizarEstacionamiento(CESSNA2);
+	// verificar horario de aviones despegados
+	torreControl->verificarHorario(biplano1);
+	torreControl->verificarHorario(CESSNA1);
 
-	//// verificar horario de aviones despegados
-	//torreControl->verificarHorario(biplano1);
-	//torreControl->verificarHorario(CESSNA1);
+	// imprimir detalles
+	torreControl->imprimirDetalles();
 
-	//// imprimir detalles
-	//torreControl->imprimirDetalles();
+	//deletes aca abajo
+
 
 	return 0;
 }
