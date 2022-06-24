@@ -37,6 +37,10 @@ public:
 	/// <param name="_avion">: Avion que intenta aterrizar</param>
 	void autorizarAterrizaje(cAvion* _avion);
 
+	/// <summary>
+	/// Autoriza el estacionamiento del avion
+	/// </summary>
+	/// <param name="_avion">Avion a autorizar el estacionamiento</param>
 	void autorizarEstacionamiento(cAvion* _avion);
 
 	/// <summary>
@@ -44,6 +48,10 @@ public:
 	/// </summary>
 	void imprimirDetalles();
 	
+	/// <summary>
+	/// Verifica que el horario se encuentre en el horario estimado
+	/// </summary>
+	/// <param name="_avion"></param>
 	void verificarHorario(cAvion* _avion);
 
 	/// <summary>

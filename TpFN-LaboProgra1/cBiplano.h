@@ -46,6 +46,11 @@ public:
 
 	string to_string() const;
 
+	/// <summary>
+	/// Cheque que los parametros del avion y del modelo sean congruentes
+	/// </summary>
+	/// <param name="_modelo"></param>
+	/// <returns></returns>
 	bool operator>(cModelo* _modelo);
 
 	static float getVelDes();

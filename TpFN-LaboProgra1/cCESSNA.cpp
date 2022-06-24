@@ -16,7 +16,7 @@ cCESSNA::cCESSNA(string _ID, float _largoAvion, float _anchoAvion, string _desti
 cCESSNA::~cCESSNA() { }
 	
 bool cCESSNA::operator>(cModelo* _modelo) {
-	if (this->pasajerosActual < _modelo->getLimitePasajeros() &&
+	if (_modelo != NULL && this->pasajerosActual < _modelo->getLimitePasajeros() &&
 		this->cargaActual < _modelo->getLimiteCarga())
 		return true;
 	return false;
@@ -94,7 +94,7 @@ string cCESSNA::to_string() const {
 		<< "Estado: " << enumToString(this->estado) << endl;
 		if (this->estado == eEstado::enVuelo) {
 	ss	    << "Destino: " << this->destino << endl
-			<< "Hora de salida: " << ctime(&this->horaSalida) << endl
+			<< "Hora de salida: " << ctime(&this->horaSalida)
 			<< "Velocidad actual: " << this->velocidad << endl
 			<< "Cantidad actual de pasajeros: " << this->pasajerosActual << endl
 			<< "Control automatico: " << this->controlAutomatico << endl

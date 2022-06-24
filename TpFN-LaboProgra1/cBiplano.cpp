@@ -15,6 +15,7 @@ cBiplano::~cBiplano() { }
 
 void cBiplano::despegar() {
 	setEstado(despegando);
+	this->horaSalida = cFecha::getHorarioActual();
 	this->velocidad = velMaxDesBip;
 	this->inclinacion = 25;
 }
@@ -32,8 +33,11 @@ void cBiplano::estacionar() {
 }
 
 bool cBiplano::operator>(cModelo* _modelo) {
-	if (this->pasajerosActual < _modelo->getLimitePasajeros())
+	if (_modelo != NULL && this->pasajerosActual < _modelo->getLimitePasajeros())
+	{
 		return true;
+	}
+	else { throw error_input(); }
 	return false;
 }
 
@@ -82,11 +86,11 @@ string cBiplano::to_string() const {
 		<< "Cantidad de helices: " << this->helice << endl
 		<< "Estado: " << enumToString(this->estado) << endl;	
 		if (this->estado == eEstado::enVuelo) {
-			ss << "Destino: " << this->destino << endl;
-			ss << "Hora de salida: " << ctime(&this->horaSalida) << endl;
-			ss << "Velocidad actual: " << this->velocidad << endl;
-			ss << "Cantidad actual de pasajeros: " << this->pasajerosActual << endl;
-			ss << "Inclinacion actual del avion: " << this->inclinacion << endl;
+	ss		<< "Destino: " << this->destino << endl
+			<< "Hora de salida: " << ctime(&this->horaSalida)
+			<< "Velocidad actual: " << this->velocidad << endl
+			<< "Cantidad actual de pasajeros: " << this->pasajerosActual << endl
+			<< "Inclinacion actual del avion: " << this->inclinacion << endl;
 		}
 		
 	return ss.str();

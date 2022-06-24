@@ -31,6 +31,7 @@ public:
 	/// </summary>	
 	~cCESSNA();
 
+	
 	static float getVelDes();
 
 	static float getVelAte();
@@ -55,6 +56,11 @@ public:
 	/// </summary>
 	void estacionar();
 
+	/// <summary>
+	/// Se fija que la cantidad de pasajeros acutales este en el limite correcto y tambien se verifica la carga
+	/// </summary>
+	/// <param name="_modelo">El modelo a recibir</param>
+	/// <returns></returns>
 	bool operator>(cModelo* _modelo);
 
 	/// <summary>

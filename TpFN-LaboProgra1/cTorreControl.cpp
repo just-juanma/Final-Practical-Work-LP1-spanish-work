@@ -32,14 +32,15 @@ void cTorreControl::imprimirDetalles()
 
 bool cTorreControl::operator!=(cAvion* avion)
 {
-	if(this->lista->noRepetido(avion))
+	if(avion != NULL && this->lista->noRepetido(avion))
 			return true;
 	return false;
 }
 
 void cTorreControl::autorizarDespegue(cAvion* _avion) {
 	try {
-		if (this->pista->getLuO() &&								 // control que la pista este libre
+		if (_avion!=NULL&& 
+			this->pista->getLuO() &&								 // control que la pista este libre
 			*_avion > _avion->getModelo()  &&				         // control que no se exceda el limite de pasajeros (y quizas carga)
 			*this != _avion &&								         // control que el avion este registrado	
 			*_avion < _avion->getCombustible())						 // control que el combustible alcance	
@@ -48,7 +49,7 @@ void cTorreControl::autorizarDespegue(cAvion* _avion) {
 			this->pista->switchLuO();								 
 			quitado->despegar();						             // despegue del avion
 			this->pista->switchLuO();								 // cambia el estado de la pista
-			quitado->setEstado(enVuelo);
+			quitado->setEstado(enVuelo);							 // cambio el estado del avion
 		}
 		else {
 			throw error_despegue();
@@ -62,7 +63,8 @@ void cTorreControl::autorizarDespegue(cAvion* _avion) {
 
 void cTorreControl::autorizarAterrizaje(cAvion* _avion) {
 	try {											
-		if (*this->pista == _avion &&							     // control que el avion pueda aterrizar en la pista
+		if (_avion != NULL && 
+			*this->pista == _avion &&							     // control que el avion pueda aterrizar en la pista
 			*_avion > _avion->getModelo() &&						 // control que no se exceda el limite de pasajeros (y quizas carga)
 			_avion->getDestino() == "San Fernando")                 // control que el destino sea el de la torre
 		{    		
@@ -71,7 +73,7 @@ void cTorreControl::autorizarAterrizaje(cAvion* _avion) {
 			*this->pista = _avion;				                     // reserva el avion en la pista
 			*this->lista + _avion;					                 // se agrega al registro de aviones a controlar
 			autorizarEstacionamiento(_avion);						 // luego de aterrizar por protocolos de seguridad se decide mandar al hangar el avion																 														
-			this->pista->switchLuO();
+			this->pista->switchLuO();								 // cambio el estado de la pista
 		}
 		else
 			throw error_aterrizaje();
@@ -82,14 +84,20 @@ void cTorreControl::autorizarAterrizaje(cAvion* _avion) {
 }
 
 void cTorreControl::autorizarEstacionamiento(cAvion* _avion) {
-	_avion->estacionar();							                 // estacionamiento del avion
-	this->hangar->almacenar(_avion);				                 // almacenamiento del avion
-	this->pista->switchLuO();						                 // cambio de estado de la pista
-}													
+	if (_avion != NULL) {
+		_avion->estacionar();							                 // estacionamiento del avion
+		this->hangar->almacenar(_avion);				                 // almacenamiento del avion
+		this->pista->switchLuO();						                 // cambio de estado de la pista
+		
+	}
+	else {
+		throw error_input();
+	}
+}
 													
 void cTorreControl::verificarHorario(cAvion* _avion) {
 	try {
-		if (*_avion < _avion->getCombustible())
+		if (_avion != NULL && *_avion < _avion->getCombustible())
 			cout << "El avion se encuentra en horario" << endl;
 		else
 			throw error_incidente();
@@ -100,6 +108,11 @@ void cTorreControl::verificarHorario(cAvion* _avion) {
 }
 
 void cTorreControl::agregarAvionesListados(cAvion* _avion) {
-	*this->lista + _avion;
-	this->hangar->almacenar(_avion);
+	if (_avion != NULL) {
+		*this->lista + _avion;
+		this->hangar->almacenar(_avion);
+	}
+	else {
+		throw error_input();
+	}
 }

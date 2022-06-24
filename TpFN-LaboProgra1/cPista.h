@@ -26,6 +26,10 @@ public:
 	/// <returns>True en caso de poder aterrizar, false en caso contrario</returns>
 	bool operator==(cAvion* avion);
 
+	/// <summary>
+	/// Cambia el estado de libre a ocupado e ingresa el avion al hangar
+	/// </summary>
+	/// <param name="avion"></param>
 	void operator=(cAvion* avion);
 
 	/// <summary>
