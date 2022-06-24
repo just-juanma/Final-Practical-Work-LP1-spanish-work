@@ -32,7 +32,7 @@ void cBiplano::estacionar() {
 }
 
 bool cBiplano::operator>(cModelo* _modelo) {
-	if (_modelo->getLimitePasajeros() < this->pasajerosActual)
+	if (this->pasajerosActual < _modelo->getLimitePasajeros())
 		return true;
 	return false;
 }

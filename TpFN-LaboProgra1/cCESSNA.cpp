@@ -16,8 +16,8 @@ cCESSNA::cCESSNA(string _ID, float _largoAvion, float _anchoAvion, string _desti
 cCESSNA::~cCESSNA() { }
 	
 bool cCESSNA::operator>(cModelo* _modelo) {
-	if ((this->pasajerosActual > _modelo->getLimitePasajeros() || this->pasajerosActual < 0) ||
-		this->cargaActual > _modelo->getLimiteCarga())
+	if (this->pasajerosActual < _modelo->getLimitePasajeros() &&
+		this->cargaActual < _modelo->getLimiteCarga())
 		return true;
 	return false;
 }
@@ -71,11 +71,7 @@ istream& operator>>(istream& is, cCESSNA& CESSNA) {
 	CESSNA.inputCleaning();
 	CESSNA.horaSalida = mktime(&aux);
 	try {
-		if (CESSNA < CESSNA.getCombustible()) {
-			CESSNA.estado = eEstado::aterrizando;
-			CESSNA.estacionar();
-		}
-		else {
+		if (!(CESSNA < CESSNA.getCombustible())) {
 			throw invalid_argument("Error: la hora de partida no es valida");
 		}
 	}

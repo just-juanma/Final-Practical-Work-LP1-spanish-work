@@ -40,7 +40,7 @@ bool cTorreControl::operator!=(cAvion* avion)
 void cTorreControl::autorizarDespegue(cAvion* _avion) {
 	try {
 		if (this->pista->getLuO() &&								 // control que la pista este libre
-			!(*_avion > _avion->getModelo())  &&				     // control que no se exceda el limite de pasajeros (y quizas carga)
+			*_avion > _avion->getModelo()  &&				         // control que no se exceda el limite de pasajeros (y quizas carga)
 			*this != _avion &&								         // control que el avion este registrado	
 			*_avion < _avion->getCombustible())						 // control que el combustible alcance	
 		{	 									 
@@ -62,15 +62,15 @@ void cTorreControl::autorizarDespegue(cAvion* _avion) {
 void cTorreControl::autorizarAterrizaje(cAvion* _avion) {
 	try {											
 		if (*this->pista == _avion &&							     // control que el avion pueda aterrizar en la pista
-			!(*_avion > _avion->getModelo()) &&						 // control que no se exceda el limite de pasajeros (y quizas carga)
-			_avion->getDestino() == "San Francisco")                 // control que el destino sea el de la torre
-			
+			*_avion > _avion->getModelo() &&						 // control que no se exceda el limite de pasajeros (y quizas carga)
+			_avion->getDestino() == "San Fernando")                 // control que el destino sea el de la torre
 		{    		
 			_avion->aterrizar();					                 // aterrizaje del avion
 			this->pista->switchLuO();								 //el avion ocupa la pista a la hora de aterriza
 			*this->pista = _avion;				                     // reserva el avion en la pista
 			*this->lista + _avion;					                 // se agrega al registro de aviones a controlar
 			autorizarEstacionamiento(_avion);						 // luego de aterrizar por protocolos de seguridad se decide mandar al hangar el avion																 														
+			this->pista->switchLuO();
 		}
 		else
 			throw error_aterrizaje();
