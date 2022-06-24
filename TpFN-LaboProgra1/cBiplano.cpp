@@ -14,18 +14,18 @@ cBiplano::cBiplano(string _ID, float _largoAvion, float _anchoAvion, string _des
 cBiplano::~cBiplano() { }
 
 void cBiplano::despegar() {
-	switchEstado(this->estado);
+	setEstado(despegando);
 	this->velocidad = velMaxDesBip;
 	this->inclinacion = 25;
 }
 
 void cBiplano::aterrizar() {
-	switchEstado(this->estado);
+	setEstado(aterrizando);
 	this->velocidad = velMaxAteBip;
 }
 
 void cBiplano::estacionar() {
-	switchEstado(this->estado);
+	setEstado(estacionado);
 	this->velocidad = 0;
 	this->inclinacion = 0;
 	this->pasajerosActual = 0;

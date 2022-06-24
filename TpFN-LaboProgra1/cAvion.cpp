@@ -49,20 +49,10 @@ string cAvion::enumToString(eEstado _estado) const {
 	}
 }
 
-void cAvion::switchEstado(eEstado _estado) {
+void cAvion::setEstado(eEstado _estado) {
 	try {
-		if (_estado == eEstado::despegando) {
-			this->estado = eEstado::enVuelo;
-		}
-		else if (_estado == eEstado::enVuelo) {
-			this->estado = eEstado::aterrizando;
-		}
-		else if (_estado == eEstado::aterrizando) {
-			this->estado = eEstado::estacionado;
-		}
-		else if (_estado == eEstado::estacionado)
-		{
-			this->estado = eEstado::despegando;
+		if (_estado) {
+			this->estado = _estado;
 		}
 		else
 			throw null_status();
@@ -83,6 +73,7 @@ bool cAvion::operator<(cCombustible* _combustible) {
 	}
 	return false;
 }
+
 
 istream& operator>>(istream& is, cAvion& avion) {
 	string destinoAux = ""; short pasajerosActualAux = 0;
