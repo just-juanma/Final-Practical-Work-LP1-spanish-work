@@ -37,11 +37,13 @@ int main() {
 	// generacion CESSNAS
 	cout << "Generando el primer CESSNA para despegue..." << endl;
 	cCESSNA* CESSNA1 = new cCESSNA("02", 4, 3);
+	verificarID(CESSNA1);
 	cin >> *CESSNA1;
 	cout << "CESSNA generado" << endl;
 
 	cout << "Generando el primer CESSNA para aterrizaje..." << endl;
 	cCESSNA* CESSNA2 = new cCESSNA("04", 4, 3);
+	verificarID(CESSNA2);
 	cin >> *CESSNA2;
 	cout << "CESSNA generado" << endl;
 

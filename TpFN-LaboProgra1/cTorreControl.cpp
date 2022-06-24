@@ -79,7 +79,7 @@ void cTorreControl::autorizarAterrizaje(cAvion* _avion) {
 			throw error_aterrizaje();
 	}
 	catch (error_aterrizaje& e) {
-		cout << e.what();
+		cout << e.what() << _avion->getID();;
 	}
 }
 

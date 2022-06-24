@@ -33,8 +33,7 @@ void cBiplano::estacionar() {
 }
 
 bool cBiplano::operator>(cModelo* _modelo) {
-	if (_modelo != NULL && this->pasajerosActual < _modelo->getLimitePasajeros())
-	{
+	if (this->pasajerosActual <= _modelo->getLimitePasajeros())
 		return true;
 	}
 	else { throw error_input(); }
@@ -59,7 +58,7 @@ istream& operator>>(istream& is, cBiplano& biplano) {
 
 	biplano.horaSalida = cFecha::getHorarioActual();
 	aux = *localtime(&biplano.horaSalida);
-	cout << "- Ingrese hora y minuto de salida (Del dia de la fecha) -" << endl;
+	cout << "- Ingrese hora y minuto de salida/llegada (Del dia de la fecha) -" << endl;
 	cout << "Ingrese la hora (solo hh): " << endl;
 	is >> aux.tm_hour;
 	cout << "Ingrese los minutos (solo mm): " << endl;
