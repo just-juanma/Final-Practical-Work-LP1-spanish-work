@@ -22,7 +22,7 @@ cAvion::cAvion(string _ID, float _largoAvion, float _anchoAvion, short _helice, 
 
 		else if (this->ID == "06") this->modelo = new cModelo("BIPLANO 20-909", float(0), 40, 2, 0, 30);
 		else if (this->ID == "07") this->modelo = new cModelo("BIPLANO 20-810", float(0), float(45.3), 1, 1, 15);
-		else if (this->ID == "08") this->modelo = new cModelo("BIPLANO T-80", float(0), 22, 3, 1, 0);
+		else if (this->ID == "08") this->modelo = new cModelo("BIPLANO T-80", float(0), 22, 10, 1, 0);
 		else if (this->ID == "09") this->modelo = new cModelo("BIPLANO T-30", float(0), float(18.1), 2, 0, 45);
 		else if (this->ID == "10") this->modelo = new cModelo("BIPLANO Q100", float(0), 60, 5, 2, 10);
 		else throw null_modelo();

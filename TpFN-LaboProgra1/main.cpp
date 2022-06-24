@@ -18,7 +18,7 @@ int main() {
 
 	// generacion torre de control
 	cout << "Generando torre de control..." << endl;
-	cTorreControl* torreControl = new cTorreControl(100, 100, 300, 300);
+	cTorreControl* torreControl = new cTorreControl(5, 5, 300, 300);
 	cout << "Torre de control generada." << endl;
 
 	// generacion biplanos
