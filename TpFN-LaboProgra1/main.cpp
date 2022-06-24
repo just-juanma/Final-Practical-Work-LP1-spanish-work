@@ -62,8 +62,7 @@ int main() {
 	// imprimir detalles
 	torreControl->imprimirDetalles();
 
-	//deletes aca abajo
-
+	delete torreControl;
 
 	return 0;
 }

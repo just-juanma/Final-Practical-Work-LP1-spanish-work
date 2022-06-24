@@ -77,8 +77,8 @@ string cBiplano::to_string() const {
 	stringstream ss;
 	ss	<< "-----------------------------" << endl
 		<< "Avion ID [" << this->ID << "]" << endl
-		<< "Largo: " << this->largoAvion << "metros" << endl
-		<< "Ancho: " << this->anchoAvion << "metros" << endl
+		<< "Largo: " << this->largoAvion << " metros" << endl
+		<< "Ancho: " << this->anchoAvion << " metros" << endl
 		<< "Cantidad de helices: " << this->helice << endl
 		<< "Estado: " << enumToString(this->estado) << endl;	
 		if (this->estado == eEstado::enVuelo) {
