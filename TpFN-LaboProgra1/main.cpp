@@ -38,18 +38,18 @@ int main() {
 	cout << "Generando el primer CESSNA para despegue..." << endl;
 	cCESSNA* CESSNA1 = new cCESSNA("02", 4, 3);
 	cin >> *CESSNA1;
-	cout << "CESSNA generado";
+	cout << "CESSNA generado" << endl;
 
 	cout << "Generando el primer CESSNA para aterrizaje..." << endl;
 	cCESSNA* CESSNA2 = new cCESSNA("04", 4, 3);
-	cin >> *CESSNA1;
-	cout << "CESSNA generado";
+	cin >> *CESSNA2;
+	cout << "CESSNA generado" << endl;
 
 	// despegue 
 	torreControl->agregarAvionesListados(biplano1);	// lo agrego a la lista de la torre y el hangar para que se pueda registrar y despachar
 	torreControl->autorizarDespegue(biplano1);		// 
 	torreControl->agregarAvionesListados(CESSNA1);
-	torreControl->autorizarDespegue(CESSNA1);
+	torreControl->autorizarDespegue(CESSNA1); /////////
 
 	// aterrizaje
 	torreControl->autorizarAterrizaje(biplano2);
