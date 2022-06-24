@@ -98,7 +98,7 @@ void cTorreControl::verificarHorario(cAvion* _avion) {
 	}
 }
 
-void cTorreControl::AgregarAvionesListados(cAvion* _avion) {
+void cTorreControl::agregarAvionesListados(cAvion* _avion) {
 	*this->lista + _avion;
 	this->hangar->almacenar(_avion);
 }

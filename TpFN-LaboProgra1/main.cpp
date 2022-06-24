@@ -24,29 +24,31 @@ int main() {
 	// generacion biplanos
 	cout << "Generando el primer biplano para despegue..." << endl;
 	cBiplano* biplano1 = new cBiplano("05", 5, 5);
+	verificarID(biplano1);
 	cin >> *biplano1;
 	cout << "Biplano generado." << endl;
 
 	cout << "Generando el segundo biplano para aterrizaje..." << endl;
 	cBiplano* biplano2 = new cBiplano("08", 6, 7);
+	verificarID(biplano2);
 	cin >> *biplano2;
 	cout << "Biplano generado." << endl;
 
-	//// generacion CESSNAS
-	//cout << "Generando el primer CESSNA para despegue..." << endl;
-	//cCESSNA* CESSNA1 = new cCESSNA("02", 4, 3);
-	//cin >> *CESSNA1;
-	//cout << "CESSNA generado";
+	// generacion CESSNAS
+	cout << "Generando el primer CESSNA para despegue..." << endl;
+	cCESSNA* CESSNA1 = new cCESSNA("02", 4, 3);
+	cin >> *CESSNA1;
+	cout << "CESSNA generado";
 
-	//cout << "Generando el primer CESSNA para aterrizaje..." << endl;
-	//cCESSNA* CESSNA2 = new cCESSNA("04", 4, 3);
-	//cin >> *CESSNA1;
-	//cout << "CESSNA generado";
+	cout << "Generando el primer CESSNA para aterrizaje..." << endl;
+	cCESSNA* CESSNA2 = new cCESSNA("04", 4, 3);
+	cin >> *CESSNA1;
+	cout << "CESSNA generado";
 
 	// despegue 
-	torreControl->AgregarAvionesListados(biplano1);	// lo agrego a la lista de la torre y el hangar para que se pueda registrar y despachar
+	torreControl->agregarAvionesListados(biplano1);	// lo agrego a la lista de la torre y el hangar para que se pueda registrar y despachar
 	torreControl->autorizarDespegue(biplano1);		// deberia despegar
-	//torreControl->autorizarDespegue(CESSNA1);
+	torreControl->autorizarDespegue(CESSNA1);
 
 	// aterrizaje
 	torreControl->autorizarAterrizaje(biplano2);

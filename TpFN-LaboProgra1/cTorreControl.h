@@ -51,7 +51,7 @@ public:
 	/// agregarlo previamente
 	/// </summary>
 	/// <param name="_avion">Avion a agregar</param>
-	void AgregarAvionesListados(cAvion* _avion);
+	void agregarAvionesListados(cAvion* _avion);
 	/// <summary>
 	/// Controla que el avion este en la lista de la torre
 	/// </summary>
