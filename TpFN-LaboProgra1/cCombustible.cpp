@@ -13,8 +13,8 @@ cCombustible::cCombustible(short hora, short minuto) {
 void cCombustible::fallaCombustible(short* hora, short* minuto) {
 	int rNumber = rand() % 51;
 	if (rNumber == 0) {
-		hora -= rand() % (*hora + 1);
-		minuto -= rand() % (*minuto + 1);
+		*hora -= rand() % (*hora + 1);
+		*minuto -= rand() % (*minuto + 1);
 	}
 }
 
