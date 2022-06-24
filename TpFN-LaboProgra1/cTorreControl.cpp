@@ -52,6 +52,7 @@ void cTorreControl::autorizarDespegue(cAvion* _avion) {
 		}
 		else {
 			throw error_despegue();
+			cout << _avion->getID();
 		}
 	}
 	catch (error_despegue& e) {
