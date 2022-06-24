@@ -44,9 +44,8 @@ int main() {
 	//cout << "CESSNA generado";
 
 	// despegue 
-	biplano1->setVelocidad(biplano1->getVelAte());	// incremento la velocidad manualmente para que se calcule si el avion puede aterrizar
 	torreControl->AgregarAvionesListados(biplano1);	// lo agrego a la lista de la torre y el hangar para que se pueda registrar y despachar
-	torreControl->autorizarDespegue(biplano1);		// 
+	torreControl->autorizarDespegue(biplano1);		// deberia despegar
 	//torreControl->autorizarDespegue(CESSNA1);
 
 	// aterrizaje

@@ -58,7 +58,7 @@ public:
 	
 	void setVelocidad(short _velocidad);
 	
-	void switchEstado(eEstado _estado);
+	void setEstado(eEstado _estado);
 	
 	/// <summary>
 	/// Genera los cambios necesarios para que el avion pueda despegar
@@ -100,6 +100,7 @@ public:
 	/// <param name="_combustible">: Combustible del avion</param>
 	/// <returns></returns>
 	bool operator<(cCombustible* _combustible);
+
 	
 	/// <summary>
 	/// Permite generar la salida de los datos del avion

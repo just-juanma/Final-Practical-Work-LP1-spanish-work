@@ -23,7 +23,7 @@ bool cCESSNA::operator>(cModelo* _modelo) {
 }
 
 void cCESSNA::despegar() {
-	switchEstado(this->estado);
+	setEstado(despegando);
 	this->horaSalida = cFecha::getHorarioActual();
 	this->velocidad = velMaxDesCes;
 	this->alerones = false;
@@ -31,12 +31,12 @@ void cCESSNA::despegar() {
 }
 
 void cCESSNA::aterrizar() {
-	switchEstado(this->estado);
+	setEstado(aterrizando);
 	this->velocidad = velMaxAteCes;
 }
 
 void cCESSNA::estacionar() {
-	switchEstado(this->estado);
+	setEstado(estacionado);
 	this->horaSalida = 0;
 	this->velocidad = 0;
 	this->alerones = true;
