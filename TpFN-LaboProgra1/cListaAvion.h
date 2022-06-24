@@ -17,8 +17,6 @@ public:
 	/// <param name="_checkEliminar">: se pretende eliminar los punteros internos? si (true)/no (false)</param>
 	cListaAvion(short _cantTotal = MAX_LISTA, bool _checkEliminar = false);
 
-	~cListaAvion();
-
 	short getCantActual() const;
 
 	/// <summary>
@@ -31,8 +29,6 @@ public:
 };
 
 inline cListaAvion::cListaAvion(short _cantTotal, bool _checkEliminar) : cLista(_cantTotal, _checkEliminar) { }
-
-inline cListaAvion::~cListaAvion() { }
 
 inline short cListaAvion::getCantActual() const { return cantActual; }
 
