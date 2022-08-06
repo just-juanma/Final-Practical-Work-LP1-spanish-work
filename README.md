@@ -20,7 +20,7 @@ The most important challenge we had to face was the high amount of overloads req
 
 ## ⬇️ How to Install and Run the Project <a name="howto"></a>
 
-To use the project, we debug it using Visual Studio 2022 Community. We understand that depending on the version of the IDE there may be conflicts. 
+To use the project, we debug it using Visual Studio 2022 Community in C++. We understand that depending on the version of the IDE there may be conflicts. 
 
 ## ⚠️ Considerations <a name="considerations"></a>
 * The take-off speed of the aircraft is in the Practical Work's instruction, but the landing speed is not. Based on the fact that the aircraft landing speed is lower than the take-off speed, we conclude:
