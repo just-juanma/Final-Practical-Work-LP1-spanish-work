@@ -1,4 +1,4 @@
-# Final-Practical-Work-Universidad-Favaloro-LP1-spanish-work
+# LP1 Final Work (spanish)
 By [Adriel Levy](https://github.com/Adriellevy), [Bautista Farfaglia](https://github.com/bautistafarfaglia) and Juan Manuel González Kapnik (owner).
 
 Final note: 08/10.
